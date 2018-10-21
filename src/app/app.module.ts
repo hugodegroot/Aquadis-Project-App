@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 // Angular Material Design
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -26,9 +26,7 @@ import 'hammerjs';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
-    HttpClientInMemoryWebApiModule,
     HttpClientModule,
 
 // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
@@ -41,7 +39,9 @@ import 'hammerjs';
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -27,13 +27,13 @@
 <!--<button type="submit">Login</button>-->
 <!--</form>-->
 
-<form class="example-form">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Username">
+    <input matInput placeholder="Email" formControlName="email">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Password">
+    <input matInput placeholder="Password" formControlName="password">
   </mat-form-field>
-  <button mat-button>Login</button>
+  <button mat-button type="submit" [disabled]="!loginForm.valid">Login</button>
 </form>
