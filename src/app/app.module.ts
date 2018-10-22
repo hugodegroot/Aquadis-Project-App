@@ -18,11 +18,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 import 'hammerjs';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

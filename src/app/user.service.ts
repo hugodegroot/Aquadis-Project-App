@@ -9,6 +9,8 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+const TOKEN = 'TOKEN';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,30 +23,59 @@ export class UserService {
     private messageService: MessageService
   ) { }
 
+  // /** GET user by email. Will 404 if id not found */
+  // getUserByEmail(email: string): Observable<User> {
+  //   const url = `${this.usersUrl}/?email=${email}`;
+  //   return this.http.get<User>(url).pipe(
+  //     tap(user => console.log(`fetched user email=${email}` + ' url: ' + url)),
+  //     catchError(this.handleError<User>(`getUserByEmail email=${email}` + ' url: ' + url))
+  //   );
+  // }
+  //
+  // /** GET user by username. Will 404 if id not found */
+  // getUserByUsername(username: string): Observable<User> {
+  //   const url = `${this.usersUrl}/?username=${username}`;
+  //   return this.http.get<User>(url).pipe(
+  //     tap(user => console.log(`fetched user username=${username}` + ' url: ' + url)),
+  //     catchError(this.handleError<User>(`getUserByUsername username=${username}` + ' url: ' + url))
+  //   );
+  // }
+
   /** GET user by email. Will 404 if id not found */
-  getUserByEmail(email: string): Observable<User> {
-    const url = `${this.usersUrl}/?email=${email}`;
+  validateLogin(username: string, password: string): Observable<User> {
+    const url = `${this.usersUrl}/?username=${username}&password=${password}`;
     return this.http.get<User>(url).pipe(
-      tap(_ => console.log(`fetched user email=${email}` + ' url: ' + url)),
-      catchError(this.handleError<User>(`getUserByEmail email=${email}` + ' url: ' + url))
+      tap(_ => console.log(`fetched user username=${username} password=${password}` + ' url: ' + url)),
+      catchError(this.handleError<User>(`getUserByUsername username=${username} password=${password}` + ' url: ' + url))
     );
   }
 
-  // getUserByEmail(term: string): Observable<User[]> {
-  //   term = term.trim();
-  //
-  //   // Add safe, URL encoded search parameter if there is a search term
-  //   const options = term ?
-  //     { params: new HttpParams().set('email', term) } : {};
-  //
-  //   return this.http.get<User[]>(this.usersUrl, options)
-  //     .pipe(
-  //       catchError(this.handleError<User[]>('searchUsersByEmail', []))
-  //     );
-  // }
+  /* GET users whose name contains search term */
+  searchUsersByUsername(term: string): Observable<User[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<User[]>(`${this.usersUrl}/?username=${term}`).pipe(
+      tap(_ => this.log(`found users matching username: "${term}"`)),
+      catchError(this.handleError<User[]>('searchUsersByUsername', []))
+    );
+  }
+
+  /* GET users whose password contains search term */
+  searchUsersByPassword(term: string): Observable<User[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<User[]>(`${this.usersUrl}/?password=${term}`).pipe(
+      tap(_ => this.log(`found users matching password: "${term}"`)),
+      catchError(this.handleError<User[]>('searchUsersByPassword', []))
+    );
+  }
 
   getUserById(id: number): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl}/?id=${id}`;
     return this.http.get<User>(url).pipe(
       tap(_ => console.log(`fetched user id=${id}` + ' url: ' + url)),
       catchError(this.handleError<User>(`getUserByID id=${id}` + ' url: ' + url))
@@ -83,6 +114,18 @@ export class UserService {
   }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`UserService: ${message}`);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(TOKEN, token);
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(TOKEN);
+  }
+
+  isLogged() {
+    return localStorage.getItem(TOKEN) != null;
   }
 }

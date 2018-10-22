@@ -29,7 +29,7 @@
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Email" formControlName="email">
+    <input matInput placeholder="Username" formControlName="username">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -37,3 +37,21 @@
   </mat-form-field>
   <button mat-button type="submit" [disabled]="!loginForm.valid">Login</button>
 </form>
+
+<ul class="search-result">
+  <li *ngFor="let user of usersByUsername$ | async" >
+    <a>
+      {{user.username}}
+    </a>
+  </li>
+</ul>
+
+<ul class="search-result">
+  <li *ngFor="let user of usersByPassword$ | async" >
+    <a>
+      {{user.password}}
+    </a>
+  </li>
+</ul>
+
+
