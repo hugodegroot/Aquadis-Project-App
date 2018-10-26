@@ -19,12 +19,18 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 import 'hammerjs';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomescreenComponent } from './homescreen/homescreen.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    HomescreenComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
