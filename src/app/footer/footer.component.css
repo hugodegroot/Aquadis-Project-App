@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+tr {
+  width: 33.33%;
+  font-size: small;
+}
+
+.copyright {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.credits {
+  margin-left: auto;
+}
