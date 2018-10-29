@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.data.getUsers().subscribe(
       data => this.users$ = data
-    )
+    );
 
     if (this.userService.isLogged()) {
-      this.router.navigateByUrl('dashboard');
+      this.router.navigateByUrl('homescreen');
     }
 
     // this.usersByUsername$ =  this.searchTermsUsername.pipe(
@@ -96,11 +96,13 @@ export class LoginComponent implements OnInit {
     this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user => this.user = user,
       (err) => console.error(err),
       () => this.validateLogin());
+
+    this.router.navigateByUrl('homescreen');
   }
 
   validateLogin() {
     if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
-      this.router.navigateByUrl('dashboard');
+      this.router.navigateByUrl('homescreen');
       this.userService.setToken('Logged in');
       console.log(this.userService.isLogged());
     }
