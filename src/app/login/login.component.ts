@@ -8,7 +8,6 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 
 import {Router} from '@angular/router';
-import {DataService} from "../data.service";
 
 
 @Component({
@@ -35,19 +34,14 @@ export class LoginComponent implements OnInit {
   private passwordValue;
 
   constructor(
-    private data: DataService,
     private userService: UserService,
     private router: Router
   ) {
   }
 
   ngOnInit() {
-    this.data.getUsers().subscribe(
-      data => this.users$ = data
-    );
-
     if (this.userService.isLogged()) {
-      this.router.navigateByUrl('homescreen');
+      this.router.navigateByUrl('dashboard');
     }
 
     // this.usersByUsername$ =  this.searchTermsUsername.pipe(
@@ -96,13 +90,11 @@ export class LoginComponent implements OnInit {
     this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user => this.user = user,
       (err) => console.error(err),
       () => this.validateLogin());
-
-    this.router.navigateByUrl('homescreen');
   }
 
   validateLogin() {
     if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
-      this.router.navigateByUrl('homescreen');
+      this.router.navigateByUrl('dashboard');
       this.userService.setToken('Logged in');
       console.log(this.userService.isLogged());
     }
