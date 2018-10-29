@@ -1,13 +1,16 @@
-<!-- main app container -->
-<mat-toolbar>
-  <span>Aquadis App</span>
-    <button id="logoutButton" (click)="logout()" mat-button>logOut</button>
-</mat-toolbar>
-        <router-outlet></router-outlet>
+<div class="main">
+  <!-- header -->
+  <div class="header">
+    <app-header></app-header>
+  </div>
 
-<!-- credits -->
-<footer class="text-center">
-  <p>
-    <a href="https://aquadis.nl/" target="_top">Aquadis</a>
-  </p>
-</footer>
+  <!--content-->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- credits -->
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
+</div>

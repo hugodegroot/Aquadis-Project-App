@@ -19,6 +19,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user: User;
+  users$: Object;
   usersByUsername$: Observable<User[]>;
   usersByPassword$: Observable<User[]>;
   private searchTermsUsername = new Subject<string>();
@@ -39,7 +40,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (this.userService.isLogged()) {
       this.router.navigateByUrl('dashboard');
     }

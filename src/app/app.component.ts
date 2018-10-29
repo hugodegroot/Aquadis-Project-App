@@ -10,24 +10,10 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'Aquadis';
-  loggedIn;
 
-  constructor(
-    public userService: UserService,
-    private router: Router,
-  ) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.loggedIn = this.userService.isLogged();
-    if (!this.loggedIn) {
-      this.logout();
-    }
-  }
-
-  logout() {
-    this.router.navigateByUrl('login');
-    this.userService.removeToken();
-    console.log(this.userService.isLogged());
   }
 }
