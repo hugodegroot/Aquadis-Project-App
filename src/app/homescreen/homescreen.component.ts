@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "../data.service";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {User} from "../user";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-homescreen',
@@ -10,16 +13,13 @@ import {Observable} from "rxjs";
 })
 export class HomescreenComponent implements OnInit {
 
-  user$: Object;
+  users: Object;
 
-  constructor(private data: DataService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.user$ = params.id);
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    this.data.getUser(this.user$).subscribe(
-      data => this.user$ = data
-    );
+    this.http.get('http://localhost:8080/aquadis/users')
+      .subscribe(http => this.users = http);
   }
-
 }
