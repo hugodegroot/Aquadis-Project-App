@@ -1,0 +1,11 @@
+<div class="team">
+<h2>Choose your team!</h2>
+<ul class="racers">
+  <li *ngFor="let user of users">
+    <span class="badge">{{user.id}}</span> {{user.firstname}} {{user.points}}
+  </li>
+</ul>
+<div class="button">
+  <button class="Button" mat-button type="submit" routerLink="/betting">Select racers!</button>
+</div>
+</div>

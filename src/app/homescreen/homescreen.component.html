@@ -1,9 +1,39 @@
-<h1>Users</h1>
-<ul>
-  <li *ngFor="let user of users$">
-    <a>{{user.firstname}} {{user.lastName}}</a>
-    <a>hallo</a>
+<div class="pointsCanvas">
+<h2>Points in group</h2> 
+<ul class="users">
+  <li *ngFor="let user of users">
+    <span class="badge">{{user.id}}</span> {{user.firstname}} {{user.points}}
   </li>
 </ul>
+</div>
 
-<h2>hey</h2>
+<div class="races">
+<h2>Current races</h2>
+<p>The current race is:</p>
+<ul class="race">
+  <li *ngFor="let race of races">
+    <span class="badge">{{race.id}}</span> {{race.name}} {{race.location}}
+  </li>
+</ul>
+<div class="button">
+  <button class="Button" mat-button type="submit" routerLink="/betting">Go to race!</button>
+</div>
+</div>
+
+<!-- groups moet nog aangepast worden aan de groep waar je naar wilt kijken alleen -->
+
+<div class="groups">
+<h2>Current group</h2>
+<p>Your current group is:</p>
+<ul class="group">
+  <li *ngFor="let group of groups">
+    <span class="badge">{{group.id}}</span> {{group.name}}
+  </li>
+</ul>
+<div class="button">
+  <button class="Button" mat-button type="submit" routerLink="/group">Change group</button>
+</div>
+<div class="button">
+  <button class="Button" mat-button type="submit" routerLink="/add-group">Add new group</button>
+</div>
+</div>

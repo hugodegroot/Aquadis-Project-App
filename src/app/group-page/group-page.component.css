@@ -1,18 +1,16 @@
-.pointsCanvas{
+.group-page{
+  border: 1px solid black;
+  margin: auto;
+}
+
+.group{
   width: 300px;
   border: 1px solid black;
   padding: 25px;
   margin: 25px;
 }
 
-.races{
-  width: 300px;
-  border: 1px solid black;
-  padding: 25px;
-  margin: 25px;
-}
-
-.groups{
+.selectGroup{
   width: 300px;
   border: 1px solid black;
   padding: 25px;

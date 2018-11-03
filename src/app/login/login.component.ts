@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.userService.isLogged()) {
-      this.router.navigateByUrl('dashboard');
+      this.router.navigateByUrl('homescreen');
     }
 
     // this.usersByUsername$ =  this.searchTermsUsername.pipe(
@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
 
   validateLogin() {
     if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
-      this.router.navigateByUrl('dashboard');
+      this.router.navigateByUrl('homescreen');
       this.userService.setToken('Logged in');
       console.log(this.userService.isLogged());
     }
