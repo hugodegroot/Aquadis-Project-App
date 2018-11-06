@@ -1,6 +1,7 @@
 
 <mat-toolbar class="header">
   <span class="title">Aquadis App</span>
-
+<div *ngIf="this.userService.isLogged()">
   <button id="logoutButton" (click)="logout()" mat-button>logOut</button>
+  </div>
 </mat-toolbar>

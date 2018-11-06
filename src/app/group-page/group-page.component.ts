@@ -15,7 +15,7 @@ export class GroupPageComponent implements OnInit {
 
   private router: Router;
 
-  group: object;
+  groups: object;
 
   selectedGroup: Group;
 
@@ -23,11 +23,12 @@ export class GroupPageComponent implements OnInit {
     this.selectedGroup = group;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private groupService: GroupService
+  ) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/aquadis/groups')
-      .subscribe(http => this.group = http);
-  }
+    this.groupService.getGroups().subscribe(group => this.groups = group);
 
+  }
 }

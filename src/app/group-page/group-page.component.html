@@ -1,5 +1,5 @@
 <div class="group-page">
-<div class="group">
+<div class="content_container">
 <h2>Current group</h2>
 <p>The people in this group are:</p> <!-- geef groep weer -->
 <ul>
@@ -12,16 +12,16 @@
 </div>
 </div>
 
-<div class="selectGroup">
+<div class="content_container">
 <h2>Change group</h2>
 <p>Select a group</p>
-<ul>
+<ul class="unordered_list_no_style">
   <li *ngFor="let group of groups" (click)="onSelect(group)">
-    <span class="badge">{{group.id}}</span> {{group.name}}
+    <mat-card class="group_card">{{group.id}} {{group.name}}</mat-card>
   </li>
 </ul>
 <div class="button">
-  <button class="Button" mat-button type="submit" routerLink="/homescreen">Change group</button>
+  <button  class="Button" mat-button type="submit" routerLink="/homescreen">Change group</button>
 </div>
 
 <div *ngIf="selectedGroup">

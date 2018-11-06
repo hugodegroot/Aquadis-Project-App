@@ -4,6 +4,7 @@ import {Group} from './group';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
+import {User} from './user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,6 +29,14 @@ export class GroupService {
     );
   }
 
+  getGroups() {
+    return this.http.get<Group[]>(this.groupsUrl)
+      .pipe(
+        tap(groups => this.log('fetched groups')),
+        catchError(this.handleError('getGroups', []))
+      );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -43,7 +52,7 @@ export class GroupService {
   }
 
   private log(message: string) {
-    this.messageService.add(`UserService: ${message}`);
+    this.messageService.add(`GroupService: ${message}`);
   }
 
 }

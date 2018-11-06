@@ -17,11 +17,11 @@ export class BettingComponent implements OnInit {
 
   users: Object;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private userService: UserService
+  ) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/aquadis/users')
-      .subscribe(http => this.users = http);
+    this.userService.getUsers().subscribe(users => this.users = users);
   }
-
 }

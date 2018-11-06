@@ -3,22 +3,18 @@
   margin: auto;
 }
 
-.group{
-  width: 300px;
-  border: 1px solid black;
-  padding: 25px;
-  margin: 25px;
-}
-
-.selectGroup{
-  width: 300px;
-  border: 1px solid black;
-  padding: 25px;
-  margin: 25px;
-}
-
-.Button{
-  background-color: #D3D3D3;
-  margin-top: 10px;
+.group_card {
   margin-bottom: 10px;
+  transition: all 0.5s;
+}
+
+.group_card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.25s;
+}
+
+.unordered_list_no_style {
+  list-style: none;
+  padding: 0;
 }

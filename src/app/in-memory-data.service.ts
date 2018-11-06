@@ -13,7 +13,9 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: 2, name: 'superrace', location: 'Monaco', startgrid: [1, 2, 3, 4, 5, 6, 7, 8, 9], endgrid: [1, 2, 3, 4, 5, 6, 7, 8, 9]}
     ];
     const groups = [
-      {id: 1, name: 'test group'}
+      {id: 1, name: 'test group 1'},
+      {id: 2, name: 'test group 2'},
+      {id: 3, name: 'test group 3'}
     ];
 
 
