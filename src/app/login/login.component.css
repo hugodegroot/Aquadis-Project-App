@@ -11,3 +11,8 @@
 .login_input {
   width: 100%;
 }
+
+.register_link {
+  position: absolute;
+  margin-left: 25px;
+}
