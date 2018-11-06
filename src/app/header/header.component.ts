@@ -31,7 +31,9 @@ export class HeaderComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigateByUrl('homescreen');
+    if (this.userService.isLogged()) {
+      this.router.navigateByUrl('homescreen');
+    }
   }
 
   goBack() {
