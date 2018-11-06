@@ -1,6 +1,7 @@
 
 <mat-toolbar class="header">
-  <span class="title">Aquadis App</span>
+  <span class="title" (click)="goHome()">Aquadis App</span>
+  <button id="backButton" (click)="goBack()" mat-button>Back</button>
 <div *ngIf="this.userService.isLogged()">
   <button id="logoutButton" (click)="logout()" mat-button>logOut</button>
   </div>

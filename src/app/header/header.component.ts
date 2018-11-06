@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,9 @@ export class HeaderComponent implements OnInit {
 
   public loggedIn;
 
-  constructor(public userService: UserService, private router: Router, ) {
+  constructor(public userService: UserService,
+              private router: Router,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -27,4 +30,11 @@ export class HeaderComponent implements OnInit {
     console.log(this.userService.isLogged());
   }
 
+  goHome() {
+    this.router.navigateByUrl('homescreen');
+  }
+
+  goBack() {
+    this.location.back();
+  }
 }
