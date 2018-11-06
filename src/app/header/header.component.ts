@@ -11,10 +11,13 @@ import {Location} from '@angular/common';
 export class HeaderComponent implements OnInit {
 
   public loggedIn;
+  private url: String;
 
   constructor(public userService: UserService,
               private router: Router,
-              private location: Location) {
+              public location: Location) {
+
+    this.router.events.subscribe((url: any) => this.url = url);
   }
 
   ngOnInit() {
