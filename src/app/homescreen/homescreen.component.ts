@@ -26,7 +26,7 @@ export class HomescreenComponent implements OnInit {
 
   races: Object;
 
-  // groups: Group[] = [];
+  // users: User[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -38,5 +38,11 @@ export class HomescreenComponent implements OnInit {
       .subscribe(http => this.races = http);
       this.http.get('http://localhost:8080/aquadis/groups')
         .subscribe(http => this.groups = http);
+      // Users moeten nog gesorteerd worden op aantal punten voor de ranking list
+      // sortUsers();
   }
+
+  // sortUsers() {
+  //   this.users;
+  // }
 }

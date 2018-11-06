@@ -19,6 +19,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user: User;
+  errorMessage: boolean;
   users$: Object;
   usersByUsername$: Observable<User[]>;
   usersByPassword$: Observable<User[]>;
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.errorMessage = false;
     if (this.userService.isLogged()) {
       this.router.navigateByUrl('homescreen');
     }
@@ -93,11 +95,23 @@ export class LoginComponent implements OnInit {
   }
 
   validateLogin() {
-    if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
-      this.router.navigateByUrl('homescreen');
-      this.userService.setToken('Logged in');
-      console.log(this.userService.isLogged());
+    try {
+      if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
+        this.router.navigateByUrl('homescreen');
+        this.userService.setToken('Logged in');
+        console.log(this.userService.isLogged());
+      }
+    } catch (e) {
+      console.log(e);
+      this.errorMessage = true;
     }
+    // if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
+    //   this.router.navigateByUrl('homescreen');
+    //   this.userService.setToken('Logged in');
+    //   console.log(this.userService.isLogged());
+    // } else {
+    //   this.errorMessage = true;
+    // }
   }
 
 }

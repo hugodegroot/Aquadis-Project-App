@@ -6,8 +6,8 @@
     <span class="badge">{{group.id}}</span> {{group.name}}
   </li>
 </ul>
-<div class="button">
-  <button class="Button" mat-button type="submit" routerLink="/add-people">Add people</button>
+<div>
+  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-people">Add people</button>
 </div>
 </div>
 
@@ -19,8 +19,8 @@
     <mat-card class="group_card">{{group.id}} {{group.name}}</mat-card>
   </li>
 </ul>
-<div class="button">
-  <button  class="Button" mat-button type="submit" routerLink="/homescreen">Change group</button>
+<div>
+  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/homescreen">Change group</button>
 </div>
 
 <div *ngIf="selectedGroup">

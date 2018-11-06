@@ -1,32 +1,31 @@
 <div class="pagina">
-<div class="content_container">
-  <h2>Place your bets</h2>
-<div class="button">
-      <button class="chooseRacers" mat-button type="submit" routerLink="/raceteam">Choose racers</button>
+  <div class="content_container">
+    <h2>Place your bets</h2>
+    <div>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/raceteam">Choose racers
+      </button>
     </div>
 
-<div class="button">
-      <button class="chooseRacers" mat-button type="submit" routerLink="/yourteam">View team</button>
+    <div>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/yourteam">View team</button>
     </div>
 
-    <div class="button">
-      <button class="chooseRacers" mat-button type="submit" routerLink="/predict">Predict max's end position</button>
+    <div>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/predict">Predict max's end
+        position
+      </button>
     </div>
-
-    <div class="button">
-          <button class="chooseRacers" mat-button type="submit" routerLink="/homescreen">Go back</button>
-        </div>
-</div>
-
-<!-- Dit moeten alle leden van de groep worden met een optie om hun keuzes te zien wanneer je er een selecteerd -->
-<div class="content_container">
-  <div id="title">
-  <h2>Scoreboaarrdd!</h2>
   </div>
-  <ul class="users">
-    <li *ngFor="let user of users">
-      <span class="badge">{{user.id}}</span> {{user.firstname}} {{user.points}}
-    </li>
-  </ul>
-</div>
+
+  <!-- Dit moeten alle leden van de groep worden met een optie om hun keuzes te zien wanneer je er een selecteerd -->
+  <div class="content_container">
+    <div id="title">
+      <h2>Scoreboaarrdd!</h2>
+    </div>
+    <ul class="users">
+      <li *ngFor="let user of users">
+        <span class="badge">{{user.id}}</span> {{user.firstname}} {{user.points}}
+      </li>
+    </ul>
+  </div>
 </div>

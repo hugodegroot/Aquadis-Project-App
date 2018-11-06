@@ -1,10 +1,11 @@
+<div class="center_container">
 <div class="content_container">
 <h2>Points in group</h2> 
-<ul class="users">
+<ol class="users">
   <li *ngFor="let user of users">
-    <span class="badge">{{user.id}}</span> {{user.firstname}} {{user.points}}
+    <span class="badge">{{user.firstname}} {{user.lastname}} - {{user.points}}</span>
   </li>
-</ul>
+</ol>
 </div>
 
 <div class="content_container">
@@ -15,9 +16,7 @@
     <span class="badge">{{race.id}}</span> {{race.name}} {{race.location}}
   </li>
 </ul>
-<div class="button">
-  <button class="Button" mat-button type="submit" routerLink="/betting">Go to race!</button>
-</div>
+  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Go to race!</button>
 </div>
 
 <!-- groups moet nog aangepast worden aan de groep waar je naar wilt kijken alleen -->
@@ -30,10 +29,8 @@
     <span class="badge">{{group.id}}</span> {{group.name}}
   </li>
 </ul>
-<div class="button">
-  <button class="Button" mat-button type="submit" routerLink="/group">Change group</button>
-</div>
-<div class="button">
-  <button class="Button" mat-button type="submit" routerLink="/add-group">Add new group</button>
+  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group">Change group</button>
+  <br>
+  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-group">Add new group</button>
 </div>
 </div>
