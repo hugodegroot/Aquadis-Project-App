@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../user.service";
-import {Router} from "@angular/router";
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,14 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  loggedIn;
+  public loggedIn;
+  private url: String;
 
-  constructor(public userService: UserService, private router: Router,) {
+  constructor(public userService: UserService,
+              private router: Router,
+              public location: Location) {
+
+    this.router.events.subscribe((url: any) => this.url = url);
   }
 
   ngOnInit() {
@@ -27,4 +33,13 @@ export class HeaderComponent implements OnInit {
     console.log(this.userService.isLogged());
   }
 
+  goHome() {
+    if (this.userService.isLogged()) {
+      this.router.navigateByUrl('homescreen');
+    }
+  }
+
+  goBack() {
+    this.location.back();
+  }
 }

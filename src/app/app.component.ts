@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import 'hammerjs';
 import {UserService} from './user.service';
 import {Router} from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,17 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'Aquadis';
 
-  constructor() {
+  constructor(
+    private location: Location
+  ) {
   }
 
   ngOnInit() {
 
   }
+
+  goBack() {
+    this.location.back();
+  }
+
 }

@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {DataService} from "../data.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {User} from "../user";
-import {UserService} from "../user.service";
-import {Race} from "../race";
-import {RaceService} from "../race.service";
-import {Group} from "../group";
-import {GroupService} from "../group.service";
+import {DataService} from '../data.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {User} from '../user';
+import {UserService} from '../user.service';
+import {Race} from '../race';
+import {RaceService} from '../race.service';
+import {Group} from '../group';
+import {GroupService} from '../group.service';
 
 
 @Component({
@@ -18,13 +18,15 @@ import {GroupService} from "../group.service";
 })
 export class HomescreenComponent implements OnInit {
 
-  private router: Router
+  private router: Router;
 
-  group: object;
+  groups: object;
 
   users: Object;
 
   races: Object;
+
+  // users: User[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -36,6 +38,11 @@ export class HomescreenComponent implements OnInit {
       .subscribe(http => this.races = http);
       this.http.get('http://localhost:8080/aquadis/groups')
         .subscribe(http => this.groups = http);
+      // Users moeten nog gesorteerd worden op aantal punten voor de ranking list
+      // sortUsers();
   }
 
+  // sortUsers() {
+  //   this.users;
+  // }
 }

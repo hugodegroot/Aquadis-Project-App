@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from "../data.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {Group} from "../group";
-import {GroupService} from "../group.service";
+import {DataService} from '../data.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Group} from '../group';
+import {GroupService} from '../group.service';
 
 @Component({
   selector: 'app-group-page',
@@ -13,9 +13,9 @@ import {GroupService} from "../group.service";
 })
 export class GroupPageComponent implements OnInit {
 
-  private router: Router
+  private router: Router;
 
-  group: object;
+  groups: object;
 
   selectedGroup: Group;
 
@@ -23,11 +23,12 @@ export class GroupPageComponent implements OnInit {
     this.selectedGroup = group;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private groupService: GroupService
+  ) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/aquadis/groups')
-      .subscribe(http => this.groups = http);
-  }
+    this.groupService.getGroups().subscribe(group => this.groups = group);
 
+  }
 }

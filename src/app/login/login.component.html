@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
-<script src="/node_modules/material-design-lite/material.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
 <!--<form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
 <!--<div class="form-group">-->
 <!--<label for="username">Username</label>-->
@@ -30,34 +26,20 @@
 <!--<button type="submit">Login</button>-->
 <!--</form>-->
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="example-form">
-  <h2 class="example-full-width">Login</h2>
-
-  <mat-form-field class="example-full-width">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form">
+  <h2>Login</h2>
+    <p *ngIf="this.errorMessage" class="error_message">Onjuiste gebruikersnaam en/of wachtwoord</p>
+  <mat-form-field class="login_input">
     <input matInput placeholder="Username" formControlName="username">
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="login_input">
     <input matInput placeholder="Password" formControlName="password">
   </mat-form-field>
 
-  <div class="button">
-    <button class="loginButton" mat-button type="submit" [disabled]="!loginForm.valid">Login</button>
+  <div>
+    <button class="button" mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login
+    </button>
+    <a class="register_link" href="/register"><p>Register</p></a>
   </div>
 </form>
-
-<ul class="search-result">
-  <li *ngFor="let user of usersByUsername$ | async">
-    <a>
-      {{user.username}}
-    </a>
-  </li>
-</ul>
-
-<ul class="search-result">
-  <li *ngFor="let user of usersByPassword$ | async">
-    <a>
-      {{user.password}}
-    </a>
-  </li>
-</ul>

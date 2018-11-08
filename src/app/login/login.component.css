@@ -1,4 +1,4 @@
-.example-form {
+.login_form {
   margin-right: auto;
   margin-left: auto;
   margin-bottom: auto;
@@ -8,16 +8,11 @@
   height: auto;
 }
 
-.example-full-width {
+.login_input {
   width: 100%;
 }
 
-.button {
-  display: flex;
-  width: 100%;
-}
-
-.loginButton {
-  margin-left: auto;
-  width: 100px;
+.register_link {
+  position: absolute;
+  margin-left: 25px;
 }

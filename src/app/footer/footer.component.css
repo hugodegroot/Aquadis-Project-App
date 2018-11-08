@@ -13,10 +13,8 @@ tr {
 }
 
 .copyright {
-  margin-right: auto;
-  margin-left: auto;
+  float: left;
 }
 
 .credits {
-  margin-left: auto;
-}
+  float: right;}

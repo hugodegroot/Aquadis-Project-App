@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
 
 import 'hammerjs';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -28,6 +29,7 @@ import { RaceteamComponent } from './raceteam/raceteam.component';
 import { YourteamComponent } from './yourteam/yourteam.component';
 import { PredictComponent } from './predict/predict.component';
 import { AddPeopleComponent } from './add-people/add-people.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { AddPeopleComponent } from './add-people/add-people.component';
     MatInputModule,
     MatToolbarModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

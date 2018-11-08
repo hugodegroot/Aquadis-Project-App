@@ -1,5 +1,30 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.button{
+  margin-top: 10px !important;
+}
+
+.content_container{
+  width: 300px;
+  border: 1px solid black;
+  padding: 15px;
+  margin: 15px;
+  display: inline-block;
+  min-height: 300px;
+  float: left;
+}
+
+.center_container {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.error_message {
+  color: red;
+}
