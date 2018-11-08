@@ -28,7 +28,7 @@ export class GroupPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.groupService.getGroups().subscribe(group => this.groups = group);
+    // this.groupService.getGroups().subscribe(group => this.groups = group);
 
   }
 }

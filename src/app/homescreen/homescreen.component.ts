@@ -18,31 +18,15 @@ import {GroupService} from '../group.service';
 })
 export class HomescreenComponent implements OnInit {
 
-  private router: Router;
+  user$: Object;
 
-  groups: object;
-
-  users: Object;
-
-  races: Object;
-
-  // users: User[] = [];
-
-  constructor(private http: HttpClient) {
+  constructor(private data: DataService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => this.user$ = params.id);
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/aquadis/users')
-      .subscribe(http => this.users = http);
-    this.http.get('http://localhost:8080/aquadis/races')
-      .subscribe(http => this.races = http);
-      this.http.get('http://localhost:8080/aquadis/groups')
-        .subscribe(http => this.groups = http);
-      // Users moeten nog gesorteerd worden op aantal punten voor de ranking list
-      // sortUsers();
+    this.data.getUser(this.user$).subscribe(
+      data => this.user$ = data && console.log(data.valueOf())
+    );
   }
-
-  // sortUsers() {
-  //   this.users;
-  // }
 }

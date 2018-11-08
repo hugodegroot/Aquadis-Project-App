@@ -8,6 +8,7 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 
 import {Router} from '@angular/router';
+import {DataService} from "../data.service";
 
 
 @Component({
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
   private passwordValue;
 
   constructor(
+    private data: DataService,
     private userService: UserService,
     private router: Router
   ) {
@@ -42,9 +44,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.errorMessage = false;
-    if (this.userService.isLogged()) {
-      this.router.navigateByUrl('homescreen');
-    }
+    // if (this.userService.isLogged()) {
+    //   this.router.navigateByUrl('homescreen');
+    // }
 
     // this.usersByUsername$ =  this.searchTermsUsername.pipe(
     //   // wait 300ms after each keystroke before considering the term
@@ -71,6 +73,15 @@ export class LoginComponent implements OnInit {
     this.usernameValue = this.loginForm.controls.username.value;
     this.passwordValue = this.loginForm.controls.password.value;
 
+    // TODO: change hard coded validation!
+    if (this.usernameValue === "ALLIGAT0R_BL00D" && this.passwordValue === "lorenzo123"){
+      this.router.navigateByUrl('homescreen/2');
+      // this.userService.setToken("logged in");
+    } else if (this.usernameValue === "luuk" && this.passwordValue === "luuk123"){
+      this.router.navigateByUrl('homescreen/1');
+      // this.userService.setToken("logged in");
+    }
+
     // console.log(this.usernameValue);
     // console.log(this.passwordValue);
 
@@ -79,9 +90,9 @@ export class LoginComponent implements OnInit {
 
     // this.userService.getUsers().subscribe();
 
-    // this.userService.getUserById(this.usernameValue).subscribe(user => this.user = user);
-    // this.userService.getUserByEmail(this.usernameValue).subscribe(user => this.user = user);
-    // this.userService.getUserByUsername(this.usernameValue).subscribe(user => this.user = user);
+    // this.userService.getUserById(this.usernameValue).subscribe(user$ => this.user$ = user$);
+    // this.userService.getUserByEmail(this.usernameValue).subscribe(user$ => this.user$ = user$);
+    // this.userService.getUserByUsername(this.usernameValue).subscribe(user$ => this.user$ = user$);
 
     // if (this.usernameValue === 'test' && this.passwordValue === 'test') {
     //   this.router.navigateByUrl('dashboard');
@@ -89,23 +100,26 @@ export class LoginComponent implements OnInit {
     //   console.log(this.userService.isLogged());
     // }
 
-    this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user => this.user = user,
-      (err) => console.error(err),
-      () => this.validateLogin());
+    // this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user$ => this.user$ = user$,
+    //   (err) => console.error(err),
+    //   () => this.validateLogin());
+
   }
 
   validateLogin() {
-    try {
-      if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
-        this.router.navigateByUrl('homescreen');
-        this.userService.setToken('Logged in');
-        console.log(this.userService.isLogged());
-      }
-    } catch (e) {
-      console.log(e);
-      this.errorMessage = true;
-    }
-    // if (this.user[0].username === this.usernameValue && this.user[0].password === this.passwordValue) {
+    // try {
+    //   if (this.user$[0].username === this.usernameValue && this.user$[0].password === this.passwordValue) {
+    //     this.router.navigateByUrl('homescreen');
+    //     this.userService.setToken('Logged in');
+    //     console.log(this.userService.isLogged());
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    //   this.errorMessage = true;
+    // }
+
+
+    // if (this.user$[0].username === this.emailValue && this.user$[0].password === this.passwordValue) {
     //   this.router.navigateByUrl('homescreen');
     //   this.userService.setToken('Logged in');
     //   console.log(this.userService.isLogged());
