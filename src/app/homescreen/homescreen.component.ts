@@ -26,7 +26,10 @@ export class HomescreenComponent implements OnInit {
 
   ngOnInit() {
     this.data.getUser(this.user$).subscribe(
-      data => this.user$ = data && console.log(data.valueOf())
+      data => this.user$ = data,
+      error => console.log(error)
     );
+
+    console.log("User: " + this.data.getUser(2))
   }
 }

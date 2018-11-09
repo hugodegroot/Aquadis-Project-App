@@ -30,11 +30,11 @@
   <h2>Login</h2>
     <p *ngIf="this.errorMessage" class="error_message">Onjuiste gebruikersnaam en/of wachtwoord</p>
   <mat-form-field class="login_input">
-    <input matInput placeholder="Username" formControlName="username">
+    <input matInput type="text" placeholder="Username" formControlName="username">
   </mat-form-field>
 
   <mat-form-field class="login_input">
-    <input matInput placeholder="Password" formControlName="password">
+    <input matInput type="password" placeholder="Password" formControlName="password">
   </mat-form-field>
 
   <div>

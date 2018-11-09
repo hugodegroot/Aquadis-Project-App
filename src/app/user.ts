@@ -8,7 +8,7 @@ export class User {
   points: number;
   isAdmin: boolean;
 
-  constructor(email: String, password: String) {
+  constructor(email: string, password: string) {
     this.email = email;
     this.password = password;
   }

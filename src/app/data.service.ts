@@ -19,7 +19,9 @@ export class DataService {
   }
 
   getUser(userId) {
-    return this.http.get('http://localhost:8080/aquadis/rest/users/' + userId);
+    const user =  this.http.get('http://localhost:8080/aquadis/rest/users/' + userId);
+    console.log('USER', user);
+    return user;
   }
 
 }
