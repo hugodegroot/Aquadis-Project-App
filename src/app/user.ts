@@ -6,5 +6,10 @@ export class User {
   lastname: string;
   password: string;
   points: number;
-  role: number;
+  isAdmin: boolean;
+
+  constructor(email: string, password: string) {
+    this.email = email;
+    this.password = password;
+  }
 }

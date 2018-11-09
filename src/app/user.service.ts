@@ -16,32 +16,32 @@ const TOKEN = 'TOKEN';
 })
 export class UserService {
 
-  private usersUrl = 'api/users';  // URL to web api
+  private usersUrl = 'http://localhost:8080/aquadis/rest/users';  // URL to web api
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  // /** GET user by email. Will 404 if id not found */
+  // /** GET user$ by email. Will 404 if id not found */
   // getUserByEmail(email: string): Observable<User> {
   //   const url = `${this.usersUrl}/?email=${email}`;
   //   return this.http.get<User>(url).pipe(
-  //     tap(user => console.log(`fetched user email=${email}` + ' url: ' + url)),
+  //     tap(user$ => console.log(`fetched user$ email=${email}` + ' url: ' + url)),
   //     catchError(this.handleError<User>(`getUserByEmail email=${email}` + ' url: ' + url))
   //   );
   // }
   //
-  // /** GET user by username. Will 404 if id not found */
+  // /** GET user$ by username. Will 404 if id not found */
   // getUserByUsername(username: string): Observable<User> {
   //   const url = `${this.usersUrl}/?username=${username}`;
   //   return this.http.get<User>(url).pipe(
-  //     tap(user => console.log(`fetched user username=${username}` + ' url: ' + url)),
+  //     tap(user$ => console.log(`fetched user$ username=${username}` + ' url: ' + url)),
   //     catchError(this.handleError<User>(`getUserByUsername username=${username}` + ' url: ' + url))
   //   );
   // }
 
-  /** GET user by email. Will 404 if id not found */
+  /** GET user$ by email. Will 404 if id not found */
   validateLogin(username: string, password: string): Observable<User> {
     const url = `${this.usersUrl}/?username=${username}&password=${password}`;
     return this.http.get<User>(url).pipe(
@@ -90,7 +90,7 @@ export class UserService {
       );
   }
 
-  /** DELETE: delete the user from the server */
+  /** DELETE: delete the user$ from the server */
   deleteUser (id: number): Observable<{}> {
     const url = `${this.usersUrl}/${id}`;
     return this.http.delete(url, httpOptions)
@@ -105,7 +105,7 @@ export class UserService {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
+      // TODO: better job of transforming error for user$ consumption
       this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.

@@ -1,36 +1,41 @@
-<div class="center_container">
-<div class="content_container">
-<h2>Points in group</h2> 
-<ol class="users">
-  <li *ngFor="let user of users">
-    <span class="badge">{{user.firstname}} {{user.lastname}} - {{user.points}}</span>
-  </li>
-</ol>
-</div>
+<div>
+  <h1 class="welcomeUser">Welcome, {{user$.userName}}</h1>
 
-<div class="content_container">
-<h2>Current races</h2>
-<p>The current race is:</p>
-<ul class="race">
-  <li *ngFor="let race of races">
-    <span class="badge">{{race.id}}</span> {{race.name}} {{race.location}}
-  </li>
-</ul>
-  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Go to race!</button>
-</div>
+  <div class="center_container">
+    <div class="content_container">
+      <h2>Points in group</h2>
+      <ol class="users">
+        <li>
+          <span class="badge"></span>
+        </li>
+      </ol>
+    </div>
 
-<!-- groups moet nog aangepast worden aan de groep waar je naar wilt kijken alleen -->
+    <div class="content_container">
+      <h2>Current races</h2>
+      <p>The current race is:</p>
+      <ul class="race">
+        <li>
+          <span class="badge"></span>
+        </li>
+      </ul>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Go to race!</button>
+    </div>
 
-<div class="content_container">
-<h2>Current group</h2>
-<p>Your current group is:</p>
-<ul class="group">
-  <li *ngFor="let group of groups">
-    <span class="badge">{{group.id}}</span> {{group.name}}
-  </li>
-</ul>
-  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group">Change group</button>
-  <br>
-  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-group">Add new group</button>
-</div>
+    <!-- groups moet nog aangepast worden aan de groep waar je naar wilt kijken alleen -->
+
+    <div class="content_container">
+      <h2>Current group</h2>
+      <p>Your current group is:</p>
+      <ul class="group">
+        <li>
+          <span class="badge"></span>
+        </li>
+      </ul>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group">Change group</button>
+      <br>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-group">Add new group
+      </button>
+    </div>
+  </div>
 </div>

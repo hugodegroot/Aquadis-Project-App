@@ -16,7 +16,6 @@ const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'homescreen', component: HomescreenComponent},
   {path: 'homescreen/:id', component: HomescreenComponent},
   {path: 'betting', component: BettingComponent},
   {path: 'group', component: GroupPageComponent},
