@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   userJSON: JSON;
 
-  emailValue: String;
+  emailValue: string;
   usernameValue: string;
   firstnameValue: string;
   lastnameValue: string;
