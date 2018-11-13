@@ -13,8 +13,8 @@ import {UserService} from '../user.service';
 export class RegisterComponent implements OnInit {
 
   user: User;
-  users: User[];
-
+  users: User[] = [];
+  loading = false;
 
   userJSON: JSON;
 
@@ -43,18 +43,24 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
+    this.loading = true;
+
     this.emailValue = this.registerForm.controls.email.value;
     this.usernameValue = this.registerForm.controls.username.value;
     this.firstnameValue = this.registerForm.controls.firstname.value;
     this.lastnameValue = this.registerForm.controls.lastname.value;
     this.passwordValue = this.registerForm.controls.password.value;
 
-    this.user = new User(this.emailValue, this.usernameValue, this.firstnameValue, this.lastnameValue, this.passwordValue);
+    this.userService.addUser(new User(this.emailValue,
+                                      this.usernameValue,
+                                      this.firstnameValue,
+                                      this.lastnameValue,
+                                      this.passwordValue)).subscribe(user => {
+      this.user = user;
+      this.loading = false;
+      this.registerForm.disable();
+    });
 
-    console.log(JSON.stringify(this.user));
-
-    this.userService.addUser(this.user).subscribe(user => this.users.push(user));
-
-  }
+}
 
 }

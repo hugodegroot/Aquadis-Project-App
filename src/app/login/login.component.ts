@@ -8,7 +8,7 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 
 import {Router} from '@angular/router';
-import {DataService} from "../data.service";
+import {DataService} from '../data.service';
 
 
 @Component({
@@ -46,9 +46,10 @@ export class LoginComponent implements OnInit {
     this.errorMessage = false;
     // this.userService.getUsers().subscribe(users => this.users$ = users, error => console.log("error: " + error) , console.log("Complete! " + this.users$));
 
-    // if (this.userService.isLogged()) {
-    //   this.router.navigateByUrl('homescreen');
-    // }
+    // TODO Change homescreen url
+    if (this.userService.isLogged()) {
+      this.router.navigateByUrl('homescreen/1');
+    }
 
     // this.usersByUsername$ =  this.searchTermsUsername.pipe(
     //   // wait 300ms after each keystroke before considering the term
@@ -76,12 +77,12 @@ export class LoginComponent implements OnInit {
     this.passwordValue = this.loginForm.controls.password.value;
 
     // TODO: change hard coded validation!
-    if (this.usernameValue === "test1" && this.passwordValue === "test"){
+    if (this.usernameValue === 'test1' && this.passwordValue === 'test') {
       this.router.navigateByUrl('homescreen/2');
-      this.userService.setToken("logged in");
-    } else if (this.usernameValue === "test2" && this.passwordValue === "test"){
+      this.userService.setToken('logged in');
+    } else if (this.usernameValue === 'test2' && this.passwordValue === 'test') {
       this.router.navigateByUrl('homescreen/1');
-      this.userService.setToken("logged in");
+      this.userService.setToken('logged in');
     }
 
     // console.log(this.usernameValue);

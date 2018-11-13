@@ -28,6 +28,7 @@
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form">
   <h2>Login</h2>
+  <p class="notice_message">Log in with your existing Aquadis account, otherwise you can <a routerLink="/register">register!</a></p>
     <p *ngIf="this.errorMessage" class="error_message">Onjuiste gebruikersnaam en/of wachtwoord</p>
   <mat-form-field class="login_input">
     <input matInput type="text" placeholder="Username" formControlName="username">

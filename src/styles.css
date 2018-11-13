@@ -28,3 +28,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .error_message {
   color: red;
 }
+
+.notice_message {
+  color: inherit;
+}
+
+.loader {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  margin-top: -100px !important;
+  margin-left: -50px !important;
+}
