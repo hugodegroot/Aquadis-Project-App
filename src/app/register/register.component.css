@@ -1,0 +1,18 @@
+.register_form {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+
+.register_input {
+  width: 100%;
+}
+
+.login_link {
+  position: absolute;
+  margin-left: 25px;
+}

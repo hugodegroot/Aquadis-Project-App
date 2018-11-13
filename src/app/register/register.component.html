@@ -1,0 +1,29 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register_form">
+  <h2>Register</h2>
+  <!--<p *ngIf="this.errorMessage" class="error_message">Onjuiste gebruikersnaam en/of wachtwoord</p>-->
+  <mat-form-field class="register_input">
+    <input matInput type="email" placeholder="Email" formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field class="register_input">
+    <input matInput type="text" placeholder="FirstName" formControlName="firstname">
+  </mat-form-field>
+
+  <mat-form-field class="register_input">
+    <input matInput type="text" placeholder="LastName" formControlName="lastname">
+  </mat-form-field>
+
+  <mat-form-field class="register_input">
+    <input matInput type="text" placeholder="Username" formControlName="username">
+  </mat-form-field>
+
+  <mat-form-field class="register_input">
+    <input matInput type="password" placeholder="Password" formControlName="password">
+  </mat-form-field>
+
+  <div>
+    <button class="button" mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register
+    </button>
+    <a class="login_link" routerLink="/login"><p>Back to Login</p></a>
+  </div>
+</form>

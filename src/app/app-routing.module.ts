@@ -11,10 +11,12 @@ import {RaceteamComponent} from './raceteam/raceteam.component';
 import {YourteamComponent} from './yourteam/yourteam.component';
 import {PredictComponent} from './predict/predict.component';
 import {AddPeopleComponent} from './add-people/add-people.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'homescreen/:id', component: HomescreenComponent},
   {path: 'betting', component: BettingComponent},

@@ -5,11 +5,11 @@ import { Race } from './race';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const users = [
-      {id: 1, email: 'pietdrap@test.nl', username: 'piet', firstname: 'Piet', lastname: 'Drap', password: 'test', isadmin: 1, points: 5},
-      {id: 2, email: 'sjaaktop@test.nl', username: 'sjaak', firstname: 'Sjaak', lastname: 'Top', password: 'test', isadmin: 1, points: 10},
-      {id: 3, email: 'sjonhek@test.nl', username: 'sjon', firstname: 'Sjon', lastname: 'Hek', password: 'test', isadmin: 1, points: 7},
-      {id: 4, email: 'kakblyat@test.nl', username: 'kak', firstname: 'Kak', lastname: 'Blyat', password: 'test', isadmin: 1, points: 8},
-      {id: 5, email: 'suhhdude@test.nl', username: 'suhh', firstname: 'Suhh', lastname: 'Dude', password: 'test', isadmin: 1, points: 4}
+      {id: 1, email: 'pietdrap@test.nl', username: 'piet', firstName: 'Piet', lastName: 'Drap', password: 'test', isadmin: 1, points: 5},
+      {id: 2, email: 'sjaaktop@test.nl', username: 'sjaak', firstName: 'Sjaak', lastName: 'Top', password: 'test', isadmin: 1, points: 10},
+      {id: 3, email: 'sjonhek@test.nl', username: 'sjon', firstName: 'Sjon', lastName: 'Hek', password: 'test', isadmin: 1, points: 7},
+      {id: 4, email: 'kakblyat@test.nl', username: 'kak', firstName: 'Kak', lastName: 'Blyat', password: 'test', isadmin: 1, points: 8},
+      {id: 5, email: 'suhhdude@test.nl', username: 'suhh', firstName: 'Suhh', lastName: 'Dude', password: 'test', isadmin: 1, points: 4}
     ];
     const races = [
       {id: 1, name: 'grand prix', location: 'Tokyo',

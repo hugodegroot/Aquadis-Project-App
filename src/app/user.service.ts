@@ -90,6 +90,14 @@ export class UserService {
       );
   }
 
+  /** POST: add a new user to the server */
+  addUser (user: User): Observable<User> {
+    return this.http.post<User>(this.usersUrl + '/user', user, httpOptions).pipe(
+      tap((user: User) => this.log(`added user w/ id=${user.id}`)),
+      catchError(this.handleError<User>('AddUser'))
+    );
+  }
+
   /** DELETE: delete the user$ from the server */
   deleteUser (id: number): Observable<{}> {
     const url = `${this.usersUrl}/${id}`;
