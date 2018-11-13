@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="header">
   <span class="title" (click)="goHome()">Aquadis App</span>
-    <button *ngIf="this.userService.isLogged() && this.router.url !== '/homescreen'" id="backButton" (click)="goBack()" mat-button><mat-icon>keyboard_backspace</mat-icon></button>
+    <button *ngIf="this.userService.isLogged() && !this.router.url.includes('/homescreen')" id="backButton" (click)="goBack()" mat-button><mat-icon>keyboard_backspace</mat-icon></button>
     <button *ngIf="this.userService.isLogged()" id="logoutButton" (click)="logout()" mat-button>logOut</button>
 </mat-toolbar>

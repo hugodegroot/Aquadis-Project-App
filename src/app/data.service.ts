@@ -15,7 +15,7 @@ export class DataService {
   }
 
   authenticateUser(user: User) {
-    return this.http.post("http://localhost:8080/aquadis/rest/users/authenticate", user)
+    return this.http.post("http://localhost:8080/aquadis/rest/users/authenticate", user);
   }
 
   getUser(userId) {

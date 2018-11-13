@@ -20,16 +20,15 @@ export class HomescreenComponent implements OnInit {
 
   user$: Object;
 
-  constructor(private data: DataService, private route: ActivatedRoute) {
+  constructor(private dataService: DataService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.user$ = params.id);
   }
 
   ngOnInit() {
-    this.data.getUser(this.user$).subscribe(
+    this.dataService.getUser(this.user$).subscribe(
       data => this.user$ = data,
-      error => console.log(error)
+      error => console.log(error),
+      () => console.log('Complete! ' + this.user$.toString())
     );
-
-    console.log("User: " + this.data.getUser(2))
   }
 }

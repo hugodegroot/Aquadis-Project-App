@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.errorMessage = false;
+    // this.userService.getUsers().subscribe(users => this.users$ = users, error => console.log("error: " + error) , console.log("Complete! " + this.users$));
+
     // if (this.userService.isLogged()) {
     //   this.router.navigateByUrl('homescreen');
     // }
@@ -74,12 +76,12 @@ export class LoginComponent implements OnInit {
     this.passwordValue = this.loginForm.controls.password.value;
 
     // TODO: change hard coded validation!
-    if (this.usernameValue === "ALLIGAT0R_BL00D" && this.passwordValue === "lorenzo123"){
+    if (this.usernameValue === "test1" && this.passwordValue === "test"){
       this.router.navigateByUrl('homescreen/2');
-      // this.userService.setToken("logged in");
-    } else if (this.usernameValue === "luuk" && this.passwordValue === "luuk123"){
+      this.userService.setToken("logged in");
+    } else if (this.usernameValue === "test2" && this.passwordValue === "test"){
       this.router.navigateByUrl('homescreen/1');
-      // this.userService.setToken("logged in");
+      this.userService.setToken("logged in");
     }
 
     // console.log(this.usernameValue);
@@ -87,8 +89,6 @@ export class LoginComponent implements OnInit {
 
     // this.searchTermsUsername.next(this.usernameValue);
     // this.searchTermsPassword.next(this.passwordValue);
-
-    // this.userService.getUsers().subscribe();
 
     // this.userService.getUserById(this.usernameValue).subscribe(user$ => this.user$ = user$);
     // this.userService.getUserByEmail(this.usernameValue).subscribe(user$ => this.user$ = user$);
