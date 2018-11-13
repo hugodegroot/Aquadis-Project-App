@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   usersByPassword$: Observable<User[]>;
   private searchTermsUsername = new Subject<string>();
   private searchTermsPassword = new Subject<string>();
+  loading = false;
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -73,6 +74,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
+
     this.usernameValue = this.loginForm.controls.username.value;
     this.passwordValue = this.loginForm.controls.password.value;
 
