@@ -32,6 +32,7 @@ import { PredictComponent } from './predict/predict.component';
 import { AddPeopleComponent } from './add-people/add-people.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterComponent } from './register/register.component';
+import { RaceComponent } from './race/race.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { RegisterComponent } from './register/register.component';
     YourteamComponent,
     PredictComponent,
     AddPeopleComponent,
-    RegisterComponent
+    RegisterComponent,
+    RaceComponent
   ],
   imports: [
     BrowserModule,

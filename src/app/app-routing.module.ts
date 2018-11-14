@@ -12,6 +12,7 @@ import {YourteamComponent} from './yourteam/yourteam.component';
 import {PredictComponent} from './predict/predict.component';
 import {AddPeopleComponent} from './add-people/add-people.component';
 import {RegisterComponent} from './register/register.component';
+import {RaceComponent} from "./race/race.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'raceteam', component: RaceteamComponent},
   {path: 'yourteam', component: YourteamComponent},
   {path: 'predict', component: PredictComponent},
-  {path: 'add-people', component: AddPeopleComponent}
+  {path: 'add-people', component: AddPeopleComponent},
+  {path: 'race', component: RaceComponent}
 ];
 
 @NgModule({
