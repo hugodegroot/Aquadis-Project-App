@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DataService} from '../data.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
@@ -19,16 +18,14 @@ import {GroupService} from '../group.service';
 export class HomescreenComponent implements OnInit {
 
   user$: Object;
+  userID: number;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.user$ = params.id);
+  constructor(private userService: UserService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => this.userID = params.id);
   }
 
   ngOnInit() {
-    this.dataService.getUser(this.user$).subscribe(
-      data => this.user$ = data,
-      error => console.log(error),
-      () => console.log('Complete! ' + this.user$.toString())
-    );
+    this.userService.getUser(this.userID).subscribe(
+      data => this.user$ = data);
   }
 }

@@ -1,12 +1,21 @@
-<div class="content_container">
-<h2>Prediction</h2>
+<div class="center_container">
+  <h1>Make your prediction!</h1>
+  <div class="content_container">
+    <div class="inner_container">
+      <h2>Prediction</h2>
 
-<p>predict Max's end position to gain extra points</p>
+      <p>predict Max's end position to gain extra points</p>
 
-  <input type="text" [(ngModel)]="valueID" placeholder="prediction">
+      <mat-form-field class="form-field">
+        <input matInput type="number" min="1" max="20" placeholder="Max's end position" [(ngModel)]="value">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-
-  <div>
-    <button class="button" mat-raised-button color="primary" routerLink="/betting">Go to race!</button>
+      <div>
+        <button class="button" mat-raised-button color="primary" type="submit">Predict!</button>
+      </div>
+    </div>
   </div>
 </div>

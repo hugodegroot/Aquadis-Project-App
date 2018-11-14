@@ -8,21 +8,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .button{
   margin-top: 10px !important;
+  margin-right: 10px !important;
 }
 
 .content_container{
-  width: 300px;
-  border: 1px solid black;
-  padding: 15px;
-  margin: 15px;
-  display: inline-block;
-  min-height: 300px;
-  float: left;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+}
+
+.inner_container {
+  margin: 10px;
+  padding: 1px 0px 10px 0px;
 }
 
 .center_container {
   margin: 0 auto;
-  width: fit-content;
+  width: 65%;
+  max-width: 650px;
 }
 
 .error_message {
@@ -39,4 +42,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   left: 50% !important;
   margin-top: -100px !important;
   margin-left: -50px !important;
+}
+
+.content {
+  margin: 10px;
+}
+
+@media only screen and (max-width: 650px) {
+
+  .center_container {
+    width: 100%;
+  }
+
+.content_container {
+  width: 100%;
+  padding: 0px;
+  border: none;
+  min-height: 0px;
+
+}
 }

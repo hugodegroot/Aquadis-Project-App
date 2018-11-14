@@ -74,8 +74,8 @@ export class UserService {
     );
   }
 
-  getUserById(id: number): Observable<User> {
-    const url = `${this.usersUrl}/?id=${id}`;
+  getUser(id: number): Observable<User> {
+    const url = `${this.usersUrl}/${id}`;
     return this.http.get<User>(url).pipe(
       tap(_ => console.log(`fetched user id=${id}` + ' url: ' + url)),
       catchError(this.handleError<User>(`getUserByID id=${id}` + ' url: ' + url))
@@ -115,6 +115,8 @@ export class UserService {
 
       // TODO: better job of transforming error for user$ consumption
       this.log(`${operation} failed: ${error.message}`);
+
+      alert('An API error has occurred. Please try again later!');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

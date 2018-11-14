@@ -1,5 +1,5 @@
 .footer {
-  display: flex;
+  height: 64px !important;
 }
 
 table {
@@ -8,7 +8,7 @@ table {
 }
 
 tr {
-  width: 33.33%;
+  /*width: 33.33%;*/
   font-size: small;
 }
 

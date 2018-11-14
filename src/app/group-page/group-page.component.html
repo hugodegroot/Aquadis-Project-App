@@ -1,36 +1,44 @@
-<div class="content_container">
-<h2>Current group</h2>
-<p>The people in this group are:</p> <!-- geef groep weer -->
-<ul>
-  <li *ngFor="let group of groups">
-    <span class="badge">{{group.id}}</span> {{group.name}}
-  </li>
-</ul>
-<div>
-  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-people">Add people</button>
-</div>
-</div>
-
-<div class="content_container">
-<h2>Change group</h2>
-<p>Select a group</p>
-<ul class="unordered_list_no_style">
-  <li *ngFor="let group of groups" (click)="onSelect(group)">
-    <mat-card class="group_card">{{group.id}} {{group.name}}</mat-card>
-  </li>
-</ul>
-<div>
-  <button class="button" mat-raised-button color="primary" type="submit" routerLink="/homescreen">Change group</button>
-</div>
-
-<div *ngIf="selectedGroup">
-  <h2>{{selectedGroup.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedGroup.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedGroup.name" placeholder="name">
-      </label>
+<div class="center_container">
+  <h1>Group!</h1>
+  <div class="content_container">
+    <div class="inner_container">
+      <h2>Current group</h2>
+      <p>The people in this group are:</p> <!-- geef groep weer -->
+      <ul>
+        <li *ngFor="let group of groups">
+          <span class="badge">{{group.id}}</span> {{group.name}}
+        </li>
+      </ul>
+      <div>
+        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-people">Add people
+        </button>
       </div>
+    </div>
+  </div>
+  <div class="content_container">
+    <div class="inner_container">
+      <h2>Change group</h2>
+      <p>Select a group</p>
+      <ul class="unordered_list_no_style">
+        <li *ngFor="let group of groups" (click)="onSelect(group)">
+          <mat-card class="group_card">{{group.id}} {{group.name}}</mat-card>
+        </li>
+      </ul>
+      <div>
+        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/homescreen">Change group
+        </button>
       </div>
 
+      <div *ngIf="selectedGroup">
+        <h2>{{selectedGroup.name | uppercase}} Details</h2>
+        <div><span>id: </span>{{selectedGroup.id}}</div>
+        <div>
+          <label>name:
+            <input [(ngModel)]="selectedGroup.name" placeholder="name">
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
