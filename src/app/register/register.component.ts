@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
       this.user = user;
       this.loading = false;
       this.registerForm.disable();
-    }, );
+      });
 
 }
 
