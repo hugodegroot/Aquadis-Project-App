@@ -24,11 +24,11 @@
   <div class="content_container">
     <div class="inner_container">
       <div id="title">
-        <h2>Scoreboaarrdd!</h2>
+        <h2>All racers in this pool: </h2>
       </div>
-      <ul class="users">
-        <li *ngFor="let user of users">
-          <span class="badge">{{user.id}}</span> {{user.firstName}} {{user.points}}
+      <ul class="racers">
+        <li *ngFor="let racers of Racers">
+          <span class="badge">{{racers.id}}</span> {{racers.lastName}} {{racers.salary}}
         </li>
       </ul>
     </div>

@@ -1,5 +1,6 @@
 <div class="center_container">
-  <h1 *ngIf="this.user$" class="welcomeUser">Welcome, {{this.user$.userName}}</h1>
+  <h1 *ngIf="this.user$" class="welcomeUser">Welcome, {{this.user$.userName}}</h1> <h1 *ngIf="user$?.adminStatus == 1">
+  Is admin</h1>
     <div class="content_container">
       <div class="inner_container">
       <h2>Current races</h2>

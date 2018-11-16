@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "./message.service";
+import {catchError, tap} from "rxjs/operators";
+import {Racers} from "./racers";
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,17 @@ export class RacersService {
 
   private racersUrl = 'http://localhost:8080/aquadis/rest/racers';  // URL to web api
 
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService
-  ) { }
+  constructor(private http: HttpClient,
+              private messageService: MessageService) {
+  }
+
+  getRacers(): Observable<Racers[]> {
+    return this.http.get<Racers[]>(this.racersUrl)
+      .pipe(
+        tap(_ => this.log('fetched racers')),
+        catchError(this.handleError('getRacers', []))
+      );
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

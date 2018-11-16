@@ -20,6 +20,8 @@ export class HomescreenComponent implements OnInit {
   user$: Object;
   userID: number;
 
+
+
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.userID = params.id);
   }
@@ -28,4 +30,5 @@ export class HomescreenComponent implements OnInit {
     this.userService.getUser(this.userID).subscribe(
       data => this.user$ = data);
   }
+
 }

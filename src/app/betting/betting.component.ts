@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../user';
 import {UserService} from '../user.service';
+import {Racers} from '../racers';
+import {RacersService} from "../racers.service";
 
 @Component({
   selector: 'app-betting',
@@ -17,11 +19,15 @@ export class BettingComponent implements OnInit {
 
   users: Object;
 
+  Racers: Object;
+
   constructor(private http: HttpClient,
-              private userService: UserService
+              private userService: UserService,
+              private racersService: RacersService
   ) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe(users => this.users = users);
+    this.racersService.getRacers().subscribe(racers => this.Racers = racers);
   }
 }
