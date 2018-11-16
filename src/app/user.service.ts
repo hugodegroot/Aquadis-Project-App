@@ -9,7 +9,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const TOKEN = 'TOKEN';
+const loginToken = 'loginToken';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +43,7 @@ export class UserService {
 
   /** GET user$ by email. Will 404 if id not found */
   validateLogin(username: string, password: string): Observable<User> {
-    const url = `${this.usersUrl}/?username=${username}&password=${password}`;
+    const url = `${this.usersUrl}/user?username=${username}&password=${password}`;
     return this.http.get<User>(url).pipe(
       tap(_ => console.log(`fetched user username=${username} password=${password}` + ' url: ' + url)),
       catchError(this.handleError<User>(`getUserByUsername username=${username} password=${password}` + ' url: ' + url))
@@ -116,7 +116,8 @@ export class UserService {
       // TODO: better job of transforming error for user$ consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      alert('An API error has occurred. Please try again later!');
+      // optional alert for the user
+      // alert('An API error has occurred. Please try again later!');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -127,15 +128,15 @@ export class UserService {
     this.messageService.add(`UserService: ${message}`);
   }
 
-  setToken(token: string): void {
-    localStorage.setItem(TOKEN, token);
+  login(): void {
+    localStorage.setItem(loginToken, 'set');
   }
 
-  removeToken(): void {
-    localStorage.removeItem(TOKEN);
+  logout(): void {
+    localStorage.removeItem(loginToken);
   }
 
   isLogged() {
-    return localStorage.getItem(TOKEN) != null;
+    return localStorage.getItem(loginToken) != null;
   }
 }

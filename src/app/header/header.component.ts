@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.userService.logout();
     this.router.navigateByUrl('login');
-    this.userService.removeToken();
     console.log(this.userService.isLogged());
   }
 

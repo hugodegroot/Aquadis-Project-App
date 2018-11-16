@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, AbstractControl} from '@angular/forms';
+import {FormGroup, FormControl} from '@angular/forms';
 import {Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {User} from '../user';

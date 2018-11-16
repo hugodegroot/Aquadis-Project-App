@@ -51,26 +51,6 @@ export class LoginComponent implements OnInit {
     if (this.userService.isLogged()) {
       this.router.navigateByUrl('homescreen/1');
     }
-
-    // this.usersByUsername$ =  this.searchTermsUsername.pipe(
-    //   // wait 300ms after each keystroke before considering the term
-    //   debounceTime(500),
-    //
-    //   // ignore new term if same as previous term
-    //   distinctUntilChanged(),
-    //
-    //   // switch to new search observable each time the term changes
-    //   switchMap((term: string) => this.userService.searchUsersByUsername(term)));
-    //
-    // this.usersByPassword$ =  this.searchTermsPassword.pipe(
-    //   // wait 300ms after each keystroke before considering the term
-    //   debounceTime(500),
-    //
-    //   // ignore new term if same as previous term
-    //   distinctUntilChanged(),
-    //
-    //   // switch to new search observable each time the term changes
-    //   switchMap((term: string) => this.userService.searchUsersByPassword(term)));
   }
 
   onSubmit() {
@@ -80,13 +60,13 @@ export class LoginComponent implements OnInit {
     this.passwordValue = this.loginForm.controls.password.value;
 
     // TODO: change hard coded validation!
-    if (this.usernameValue === 'test1' && this.passwordValue === 'test') {
-      this.router.navigateByUrl('homescreen/2');
-      this.userService.setToken('logged in');
-    } else if (this.usernameValue === 'test2' && this.passwordValue === 'test') {
-      this.router.navigateByUrl('homescreen/1');
-      this.userService.setToken('logged in');
-    }
+    // if (this.usernameValue === 'test1' && this.passwordValue === 'test') {
+    //   this.router.navigateByUrl('homescreen/2');
+    //   this.userService.login('logged in');
+    // } else if (this.usernameValue === 'test2' && this.passwordValue === 'test') {
+    //   this.router.navigateByUrl('homescreen/1');
+    //   this.userService.login('logged in');
+    // }
 
     // console.log(this.usernameValue);
     // console.log(this.passwordValue);
@@ -97,10 +77,10 @@ export class LoginComponent implements OnInit {
     // this.userService.getUserById(this.usernameValue).subscribe(user$ => this.user$ = user$);
     // this.userService.getUserByEmail(this.usernameValue).subscribe(user$ => this.user$ = user$);
     // this.userService.getUserByUsername(this.usernameValue).subscribe(user$ => this.user$ = user$);
-
+        this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user => {this.validateLogin(user); });
     // if (this.usernameValue === 'test' && this.passwordValue === 'test') {
     //   this.router.navigateByUrl('dashboard');
-    //   this.userService.setToken('Logged in');
+    //   this.userService.login('Logged in');
     //   console.log(this.userService.isLogged());
     // }
 
@@ -110,11 +90,21 @@ export class LoginComponent implements OnInit {
 
   }
 
-  validateLogin() {
+  validateLogin(user: User) {
+
+    this.loading = false;
+
+    if (user) {
+      this.userService.login();
+      this.router.navigateByUrl('/homescreen/' + user.id);
+    } else {
+      console.log('Invalid Login');
+      this.errorMessage = true;
+    }
     // try {
     //   if (this.user$[0].username === this.usernameValue && this.user$[0].password === this.passwordValue) {
     //     this.router.navigateByUrl('homescreen');
-    //     this.userService.setToken('Logged in');
+    //     this.userService.login('Logged in');
     //     console.log(this.userService.isLogged());
     //   }
     // } catch (e) {
@@ -125,7 +115,7 @@ export class LoginComponent implements OnInit {
 
     // if (this.user$[0].username === this.emailValue && this.user$[0].password === this.passwordValue) {
     //   this.router.navigateByUrl('homescreen');
-    //   this.userService.setToken('Logged in');
+    //   this.userService.login('Logged in');
     //   console.log(this.userService.isLogged());
     // } else {
     //   this.errorMessage = true;
