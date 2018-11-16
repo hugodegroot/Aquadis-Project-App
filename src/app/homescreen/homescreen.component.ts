@@ -18,17 +18,23 @@ import {GroupService} from '../group.service';
 export class HomescreenComponent implements OnInit {
 
   user$: Object;
+  groups$: Object;
   userID: number;
 
 
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService,
+              private groupService: GroupService,
+              private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.userID = params.id);
   }
 
   ngOnInit() {
     this.userService.getUser(this.userID).subscribe(
       data => this.user$ = data);
+
+    this.groupService.getGroups().subscribe(
+      data => this.groups$ = data);
   }
 
 }
