@@ -21,11 +21,6 @@ export class LoginComponent implements OnInit {
 
   user: User;
   errorMessage: boolean;
-  users$: Object;
-  usersByUsername$: Observable<User[]>;
-  usersByPassword$: Observable<User[]>;
-  private searchTermsUsername = new Subject<string>();
-  private searchTermsPassword = new Subject<string>();
   loading = false;
 
   loginForm = new FormGroup({
@@ -45,8 +40,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.errorMessage = false;
-    // this.userService.getUsers().subscribe(users => this.users$ = users, error => console.log("error: " + error) , console.log("Complete! " + this.users$));
-
     // TODO Change homescreen url
     if (this.userService.isLogged()) {
       this.router.navigateByUrl('homescreen/1');
@@ -59,34 +52,7 @@ export class LoginComponent implements OnInit {
     this.usernameValue = this.loginForm.controls.username.value;
     this.passwordValue = this.loginForm.controls.password.value;
 
-    // TODO: change hard coded validation!
-    // if (this.usernameValue === 'test1' && this.passwordValue === 'test') {
-    //   this.router.navigateByUrl('homescreen/2');
-    //   this.userService.login('logged in');
-    // } else if (this.usernameValue === 'test2' && this.passwordValue === 'test') {
-    //   this.router.navigateByUrl('homescreen/1');
-    //   this.userService.login('logged in');
-    // }
-
-    // console.log(this.usernameValue);
-    // console.log(this.passwordValue);
-
-    // this.searchTermsUsername.next(this.usernameValue);
-    // this.searchTermsPassword.next(this.passwordValue);
-
-    // this.userService.getUserById(this.usernameValue).subscribe(user$ => this.user$ = user$);
-    // this.userService.getUserByEmail(this.usernameValue).subscribe(user$ => this.user$ = user$);
-    // this.userService.getUserByUsername(this.usernameValue).subscribe(user$ => this.user$ = user$);
-        this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user => {this.validateLogin(user); });
-    // if (this.usernameValue === 'test' && this.passwordValue === 'test') {
-    //   this.router.navigateByUrl('dashboard');
-    //   this.userService.login('Logged in');
-    //   console.log(this.userService.isLogged());
-    // }
-
-    // this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user$ => this.user$ = user$,
-    //   (err) => console.error(err),
-    //   () => this.validateLogin());
+    this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user => {this.validateLogin(user); });
 
   }
 
@@ -101,25 +67,6 @@ export class LoginComponent implements OnInit {
       console.log('Invalid Login');
       this.errorMessage = true;
     }
-    // try {
-    //   if (this.user$[0].username === this.usernameValue && this.user$[0].password === this.passwordValue) {
-    //     this.router.navigateByUrl('homescreen');
-    //     this.userService.login('Logged in');
-    //     console.log(this.userService.isLogged());
-    //   }
-    // } catch (e) {
-    //   console.log(e);
-    //   this.errorMessage = true;
-    // }
-
-
-    // if (this.user$[0].username === this.emailValue && this.user$[0].password === this.passwordValue) {
-    //   this.router.navigateByUrl('homescreen');
-    //   this.userService.login('Logged in');
-    //   console.log(this.userService.isLogged());
-    // } else {
-    //   this.errorMessage = true;
-    // }
   }
 
 }
