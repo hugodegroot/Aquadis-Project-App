@@ -1,3 +1,7 @@
+.center_container {
+  flex-direction: row;
+}
+
 .Button{
   background-color: #D3D3D3;
   margin-top: 10px;
