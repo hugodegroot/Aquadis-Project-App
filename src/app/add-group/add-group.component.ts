@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from "../data.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {User} from "../user";
-import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-add-group',
@@ -17,7 +11,7 @@ export class AddGroupComponent implements OnInit {
 
   valueID = '';
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 

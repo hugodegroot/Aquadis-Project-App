@@ -1,12 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {User} from '../user';
 import {UserService} from '../user.service';
-import {Race} from '../race';
-import {RaceService} from '../race.service';
-import {Group} from '../group';
 import {GroupService} from '../group.service';
 
 
@@ -24,17 +17,20 @@ export class HomescreenComponent implements OnInit {
 
 
   constructor(private userService: UserService,
-              private groupService: GroupService,
-              private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.userID = params.id);
+              private groupService: GroupService) {
   }
 
   ngOnInit() {
+    this.userID = this.userService.getUserId();
+
     this.userService.getUser(this.userID).subscribe(
       data => this.user$ = data);
 
     this.groupService.getGroups().subscribe(
       data => this.groups$ = data);
+
+    console.log('SessionStorage UserId: ' + this.userService.getUserId());
+
   }
 
 }

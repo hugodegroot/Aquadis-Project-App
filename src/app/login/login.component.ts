@@ -1,11 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormGroup, FormControl, AbstractControl} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
 import {Validators} from '@angular/forms';
 
 import {UserService} from '../user.service';
 import {User} from '../user';
-import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import {Observable, Subject} from 'rxjs';
 
 import {Router} from '@angular/router';
 import {DataService} from '../data.service';
@@ -40,9 +38,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.errorMessage = false;
-    // TODO Change homescreen url
     if (this.userService.isLogged()) {
-      this.router.navigateByUrl('homescreen/1');
+      this.router.navigateByUrl('homescreen');
     }
   }
 
@@ -61,8 +58,8 @@ export class LoginComponent implements OnInit {
     this.loading = false;
 
     if (user) {
-      this.userService.login();
-      this.router.navigateByUrl('/homescreen/' + user.id);
+      this.userService.login(user);
+      this.router.navigateByUrl('homescreen');
     } else {
       console.log('Invalid Login');
       this.errorMessage = true;

@@ -11,6 +11,7 @@ const httpOptions = {
 };
 
 const loginToken = 'loginToken';
+const userIdToken = 'userIdToken';
 
 @Injectable({
   providedIn: 'root'
@@ -130,15 +131,25 @@ export class UserService {
     this.messageService.add(`UserService: ${message}`);
   }
 
-  login(): void {
-    localStorage.setItem(loginToken, 'set');
+  // Session logic
+  login(user: User): void {
+    sessionStorage.setItem(loginToken, 'set');
+    this.setUserId(user.id);
   }
 
   logout(): void {
-    localStorage.removeItem(loginToken);
+    sessionStorage.clear();
   }
 
   isLogged() {
-    return localStorage.getItem(loginToken) != null;
+    return sessionStorage.getItem(loginToken) != null;
+  }
+
+  setUserId(userId: number): void {
+    sessionStorage.setItem(userIdToken, userId);
+  }
+
+  getUserId(): number {
+    return sessionStorage.getItem(userIdToken);
   }
 }
