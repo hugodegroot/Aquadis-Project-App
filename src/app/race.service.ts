@@ -4,9 +4,10 @@ import {MessageService} from './message.service';
 import {Observable, of} from 'rxjs';
 import {Race} from './race';
 import {catchError, tap} from 'rxjs/operators';
+import {DataService} from './data.service';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -14,9 +15,10 @@ const httpOptions = {
 })
 export class RaceService {
 
-  private racesUrl = 'api/races';  // URL to web api
+  private racesUrl = this.dataService.getApiUrl() + '/races';  // URL to web api
 
-  constructor(private http: HttpClient,
+  constructor(private dataService: DataService,
+              private http: HttpClient,
               private messageService: MessageService) {
   }
 
@@ -42,7 +44,7 @@ export class RaceService {
   }
 
   /** DELETE: delete the hero from the server */
-  deleteRace (race: Race | number): Observable<Race> {
+  deleteRace(race: Race | number): Observable<Race> {
     const id = typeof race === 'number' ? race : race.id;
     const url = `${this.racesUrl}/${id}`;
     return this.http.delete<Race>(url, httpOptions).pipe(
@@ -51,7 +53,7 @@ export class RaceService {
     );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

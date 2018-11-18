@@ -4,7 +4,7 @@ import {Group} from './group';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
-import {User} from './user';
+import {DataService} from './data.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,9 +15,10 @@ const httpOptions = {
 })
 export class GroupService {
 
-  private groupsUrl = 'http://localhost:8080/aquadis/rest/groups';
+  private groupsUrl = this.dataService.getApiUrl() + '/groups';
 
-  constructor(private http: HttpClient,
+  constructor(private dataService: DataService,
+              private http: HttpClient,
               private messageService: MessageService) {
   }
 
@@ -29,7 +30,7 @@ export class GroupService {
       );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

@@ -4,6 +4,7 @@ import {User} from './user';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
+import {DataService} from './data.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,9 +17,10 @@ const loginToken = 'loginToken';
 })
 export class UserService {
 
-  private usersUrl = 'http://localhost:8080/aquadis/rest/users';  // URL to web api
+  private usersUrl = this.dataService.getApiUrl() + '/users';  // URL to web api
 
   constructor(
+    private dataService: DataService,
     private http: HttpClient,
     private messageService: MessageService
   ) { }

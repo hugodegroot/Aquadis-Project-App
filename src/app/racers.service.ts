@@ -1,18 +1,20 @@
-import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {MessageService} from "./message.service";
-import {catchError, tap} from "rxjs/operators";
-import {Racers} from "./racers";
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {MessageService} from './message.service';
+import {catchError, tap} from 'rxjs/operators';
+import {Racers} from './racers';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RacersService {
 
-  private racersUrl = 'http://localhost:8080/aquadis/rest/racers';  // URL to web api
+  private racersUrl = this.dataService.getApiUrl() + '/racers';  // URL to web api
 
-  constructor(private http: HttpClient,
+  constructor(private dataService: DataService,
+              private http: HttpClient,
               private messageService: MessageService) {
   }
 
@@ -24,7 +26,7 @@ export class RacersService {
       );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
