@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class DataService {
 
-  apiUrl: String = 'http://192.168.2.22:8080/aquadis/rest';
+  apiUrl: String = 'http://localhost:8080/aquadis/rest';
 
   constructor() {
   }
