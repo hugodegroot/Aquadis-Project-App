@@ -48,6 +48,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin: 10px;
 }
 
+.selection_card {
+  margin-bottom: 10px;
+  transition: all 0.5s !important;
+}
+
+.selection_card:hover {
+  cursor: pointer;
+  transform: scale(1.025);
+  transition: all 0.25s !important;
+}
+
+.unordered_list_no_style {
+  list-style: none;
+  padding: 0;
+}
+
 @media only screen and (max-width: 650px) {
 
   .center_container {
@@ -59,6 +75,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 0px;
   border: none;
   min-height: 0px;
-
 }
 }

@@ -22,6 +22,7 @@ const routes: Routes = [
   {path: 'homescreen', component: HomescreenComponent},
   {path: 'betting', component: BettingComponent},
   {path: 'group', component: GroupPageComponent},
+  {path: 'group/:id', component: GroupPageComponent},
   {path: 'add-group', component: AddGroupComponent},
   {path: 'raceteam', component: RaceteamComponent},
   {path: 'yourteam', component: YourteamComponent},

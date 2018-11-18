@@ -15,6 +15,10 @@ export class GroupPageComponent implements OnInit {
 
   private router: Router;
 
+  currentGroupId: number;
+
+  group: object;
+
   groups: object;
 
   selectedGroup: Group;
@@ -24,11 +28,14 @@ export class GroupPageComponent implements OnInit {
   }
 
   constructor(private http: HttpClient,
-              private groupService: GroupService
-  ) { }
+              private groupService: GroupService,
+              private route: ActivatedRoute
+  ) {this.route.params.subscribe(params => this.currentGroupId = params.id);}
 
   ngOnInit() {
-    // this.groupService.getGroups().subscribe(group => this.groups = group);
-
+    if (this.currentGroupId !== undefined) {
+      this.groupService.getGroup(this.currentGroupId).subscribe(group => this.group = group);
+    }
+    this.groupService.getGroups().subscribe(groups => this.groups = groups);
   }
 }

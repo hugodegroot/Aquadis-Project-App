@@ -6,7 +6,7 @@
     <div class="inner_container">
       <h2>Current races</h2>
       <p>The current race is:</p>
-      <ul class="race">
+      <ul class="unordered_list_no_style">
         <li>
           <span class="badge"></span>
         </li>
@@ -19,9 +19,9 @@
     <div class="inner_container">
       <h2>Groups</h2>
       <p>Your groups:</p>
-      <ul class="group">
+      <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups$">
-          <a routerLink="#">{{group.name}}</a>
+          <mat-card routerLink="/group/{{group.id}}" class="selection_card">{{group.name}}</mat-card>
         </li>
       </ul>
       <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group">Change group</button>

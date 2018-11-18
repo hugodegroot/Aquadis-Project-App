@@ -5,6 +5,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {DataService} from './data.service';
+import {User} from './user';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -30,6 +31,14 @@ export class GroupService {
       );
   }
 
+  getGroup(id: number): Observable<Group> {
+    const url = `${this.groupsUrl}/${id}`;
+    return this.http.get<Group>(url).pipe(
+      tap(_ => console.log(`fetched group id=${id}` + ' url: ' + url)),
+      catchError(this.handleError<Group>(`getGroupById id=${id}` + ' url: ' + url))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -39,14 +48,12 @@ export class GroupService {
       // TODO: better job of transforming error for user$ consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      alert('An API error has occurred. Please try again later!');
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
   private log(message: string) {
-    this.messageService.add(`UserService: ${message}`);
+    this.messageService.add(`GroupService: ${message}`);
   }
 }

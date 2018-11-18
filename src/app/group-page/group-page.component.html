@@ -5,8 +5,11 @@
       <h2>Current group</h2>
       <p>The people in this group are:</p> <!-- geef groep weer -->
       <ul>
-        <li *ngFor="let group of groups">
-          <span class="badge">{{group.id}}</span> {{group.name}}
+        <!--<li *ngFor="let group of groups">-->
+          <!--<span class="badge">{{user.id}}</span>-->
+        <!--</li>-->
+        <li *ngIf="group !== undefined">
+          <span class="badge">{{group}}</span>
         </li>
       </ul>
       <div>
@@ -21,7 +24,7 @@
       <p>Select a group</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups" (click)="onSelect(group)">
-          <mat-card class="group_card">{{group.id}} {{group.name}}</mat-card>
+          <mat-card class="selection_card">{{group.id}} {{group.name}}</mat-card>
         </li>
       </ul>
       <div>
