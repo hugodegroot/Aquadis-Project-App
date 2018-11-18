@@ -146,10 +146,10 @@ export class UserService {
   }
 
   setUserId(userId: number): void {
-    sessionStorage.setItem(userIdToken, userId);
+    sessionStorage.setItem(userIdToken, userId.toString());
   }
 
   getUserId(): number {
-    return sessionStorage.getItem(userIdToken);
+    return Number(sessionStorage.getItem(userIdToken));
   }
 }
