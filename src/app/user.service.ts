@@ -5,6 +5,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {DataService} from './data.service';
+import {Group} from "./group";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -99,6 +100,14 @@ export class UserService {
       tap((user: User) => this.log(`added user w/ id=${user.id}`)),
       catchError(this.handleError<User>('AddUser'))
     );
+  }
+
+  getGroups(userID: number): Observable<Group[]> {
+    return this.http.get<Group[]>(this.usersUrl + "/" + userID + "/ug/groups")
+      .pipe(
+        tap(_ => this.log('fetched groups')),
+        catchError(this.handleError('getGroups', []))
+      );
   }
 
   /** DELETE: delete the user$ from the server */

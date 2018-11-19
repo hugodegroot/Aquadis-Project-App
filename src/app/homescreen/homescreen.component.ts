@@ -16,8 +16,7 @@ export class HomescreenComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService,
-              private groupService: GroupService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
@@ -26,7 +25,7 @@ export class HomescreenComponent implements OnInit {
     this.userService.getUser(this.userID).subscribe(
       data => this.user$ = data);
 
-    this.groupService.getGroups().subscribe(
+    this.userService.getGroups(this.userID).subscribe(
       data => this.groups$ = data);
 
     console.log('SessionStorage UserId: ' + this.userService.getUserId());
