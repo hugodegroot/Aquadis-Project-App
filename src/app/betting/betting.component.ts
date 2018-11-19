@@ -19,7 +19,7 @@ export class BettingComponent implements OnInit {
 
   users: Object;
 
-  Racers: Object;
+  Racers$: Object;
 
   constructor(private http: HttpClient,
               private userService: UserService,
@@ -28,6 +28,6 @@ export class BettingComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe(users => this.users = users);
-    this.racersService.getRacers().subscribe(racers => this.Racers = racers);
+    this.racersService.getRacers().subscribe(racers => this.Racers$ = racers);
   }
 }

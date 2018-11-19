@@ -42,7 +42,7 @@
       <p>Your groups:</p>
       <ul class="groups">
         <li *ngFor="let group of groups">
-          <span class="badge">{{group.id}}</span> {{group.name}}
+          <a class="badge">{{group.name}}</a>
         </li>
       </ul>
       <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Make your bet</button>

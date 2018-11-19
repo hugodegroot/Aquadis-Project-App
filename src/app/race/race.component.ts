@@ -15,19 +15,22 @@ export class RaceComponent implements OnInit {
 
   selectedPosition: string = '';
 
-  groups: Group[];
+  userID: number;
+  groups$: Object;
 
   selectChangeHandler(event: any) {
     this.selectedPosition = event.target.value;
   }
 
-  constructor(private groupService: GroupService) {
+  constructor(private userService: UserService) {
 
   }
 
   ngOnInit() {
-    this.groupService.getGroups().subscribe(
-      data => this.groups = data);
+    this.userID = this.userService.getUserId();
+
+    this.userService.getGroups(this.userID).subscribe(
+      data => this.groups$ = data);
   }
 
 }

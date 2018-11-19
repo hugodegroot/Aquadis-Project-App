@@ -27,8 +27,14 @@
         <h2>All racers in this pool: </h2>
       </div>
       <ul class="racers">
-        <li *ngFor="let racers of Racers">
-          <span class="badge">{{racers.id}}</span> {{racers.lastName}} {{racers.salary}}
+        <li *ngFor="let racer of Racers$">
+            <div style='float:left; width:12%'>
+              {{racer.lastName}}
+            </div>
+
+            <div style='float:left; width:20%; margin-left:30px'>
+              {{racer.salary}}
+            </div>
         </li>
       </ul>
     </div>
