@@ -12,12 +12,10 @@ export class HomescreenComponent implements OnInit {
 
   user$: Object;
   groups$: Object;
+  // userGroups$; Object;
   userID: number;
 
-
-
-  constructor(private userService: UserService,
-              private groupService: GroupService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
@@ -26,8 +24,11 @@ export class HomescreenComponent implements OnInit {
     this.userService.getUser(this.userID).subscribe(
       data => this.user$ = data);
 
-    this.groupService.getGroups().subscribe(
+    this.userService.getGroups(this.userID).subscribe(
       data => this.groups$ = data);
+
+    // this.userService.getBudgets(this.userID).subscribe(
+    //   data => this.userGroups$ = data);
 
     console.log('SessionStorage UserId: ' + this.userService.getUserId());
 
