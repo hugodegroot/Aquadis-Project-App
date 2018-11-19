@@ -8,7 +8,7 @@ import {DataService} from './data.service';
 import {Group} from "./group";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 const loginToken = 'loginToken';
@@ -25,7 +25,8 @@ export class UserService {
     private dataService: DataService,
     private http: HttpClient,
     private messageService: MessageService
-  ) { }
+  ) {
+  }
 
   // /** GET user$ by email. Will 404 if id not found */
   // getUserByEmail(email: string): Observable<User> {
@@ -94,8 +95,16 @@ export class UserService {
       );
   }
 
+  // getBudgets(userID: number): Observable<User[]> {
+  //   return this.http.get<User[]>(this.usersUrl + "/" + userID + "/ug/" + userID)
+  //     .pipe(
+  //       tap(_ => this.log('fetched users')),
+  //       catchError(this.handleError('getUsers', []))
+  //     );
+  // }
+
   /** POST: add a new user to the server */
-  addUser (user: User): Observable<User> {
+  addUser(user: User): Observable<User> {
     return this.http.post<User>(this.usersUrl + '/user', user, httpOptions).pipe(
       tap((user: User) => this.log(`added user w/ id=${user.id}`)),
       catchError(this.handleError<User>('AddUser'))
@@ -111,7 +120,7 @@ export class UserService {
   }
 
   /** DELETE: delete the user$ from the server */
-  deleteUser (id: number): Observable<{}> {
+  deleteUser(id: number): Observable<{}> {
     const url = `${this.usersUrl}/${id}`;
     return this.http.delete(url, httpOptions)
       .pipe(
@@ -119,7 +128,7 @@ export class UserService {
       );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

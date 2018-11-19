@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -15,11 +15,11 @@ export class GroupPageComponent implements OnInit {
 
   private router: Router;
 
-  currentGroupId: number;
+  group$: Object;
 
-  group: object;
+  users$: Object;
 
-  groups: object;
+  groupID: number;
 
   selectedGroup: Group;
 
@@ -30,12 +30,16 @@ export class GroupPageComponent implements OnInit {
   constructor(private http: HttpClient,
               private groupService: GroupService,
               private route: ActivatedRoute
-  ) {this.route.params.subscribe(params => this.currentGroupId = params.id);}
+  ) {
+    this.route.params.subscribe(params => this.groupID = params.id);
+  }
 
   ngOnInit() {
-    if (this.currentGroupId !== undefined) {
-      this.groupService.getGroup(this.currentGroupId).subscribe(group => this.group = group);
-    }
-    this.groupService.getGroups().subscribe(groups => this.groups = groups);
+    this.groupService.getGroup(this.groupID).subscribe(
+      data => this.group$ = data);
+
+    this.groupService.getUsers(this.groupID).subscribe(
+      data => this.users$ = data
+    )
   }
 }

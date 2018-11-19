@@ -39,6 +39,14 @@ export class GroupService {
     );
   }
 
+  getUsers(groupID: number): Observable<User[]> {
+    return this.http.get<User[]>(this.groupsUrl + "/" + groupID + "/ug/users")
+      .pipe(
+        tap(_ => this.log('fetched users')),
+        catchError(this.handleError('getUsers', []))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
