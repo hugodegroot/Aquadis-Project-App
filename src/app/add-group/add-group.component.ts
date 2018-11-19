@@ -9,7 +9,7 @@ export class AddGroupComponent implements OnInit {
 
   constructor() { }
 
-  valueID = '';
+  valueName = '';
 
   ngOnInit() {
 
