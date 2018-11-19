@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../user.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatSelectModule} from '@angular/material/select';
@@ -17,9 +17,7 @@ export class RaceComponent implements OnInit {
 
   groups: Group[];
 
-
-
-  selectChangeHandler (event: any) {
+  selectChangeHandler(event: any) {
     this.selectedPosition = event.target.value;
   }
 
