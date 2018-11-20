@@ -18,7 +18,7 @@ import {DataService} from '../data.service';
 export class LoginComponent implements OnInit {
 
   user: User;
-  errorMessage: boolean;
+  errorMessage = false;
   loading = false;
 
   loginForm = new FormGroup({

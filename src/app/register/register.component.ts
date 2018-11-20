@@ -15,21 +15,22 @@ export class RegisterComponent implements OnInit {
   // Variables declaration
   user: User;
   loading = false;
+  errorMessage = false;
 
   // Form field variables declaration
   emailValue: string;
-  usernameValue: string;
   firstnameValue: string;
   lastnameValue: string;
   passwordValue: string;
+  repeatPasswordValue: string;
 
   // Initiating formGroup
   registerForm = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     firstname: new FormControl('', Validators.required),
     lastname: new FormControl('', Validators.required),
-    username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)])),
+    repeatPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)])),
   });
 
   constructor(private router: Router,
@@ -44,28 +45,33 @@ export class RegisterComponent implements OnInit {
   // When register button is clicked
   onSubmit() {
 
-    // Start loader
-    this.loading = true;
-
     // Assign form values
     this.emailValue = this.registerForm.controls.email.value;
-    this.usernameValue = this.registerForm.controls.username.value;
     this.firstnameValue = this.registerForm.controls.firstname.value;
     this.lastnameValue = this.registerForm.controls.lastname.value;
     this.passwordValue = this.registerForm.controls.password.value;
+    this.repeatPasswordValue = this.registerForm.controls.repeatPassword.value;
+
+    if (this.passwordValue === this.repeatPasswordValue) {
+      // Start the loader
+      this.loading = true;
 
     // Add the user via Api
-    this.userService.addUser(new User(this.emailValue,
-                                      this.usernameValue,
-                                      this.firstnameValue,
-                                      this.lastnameValue,
-                                      this.passwordValue)).subscribe(user => {
-      // If successful
-      this.user = user;
-      this.loading = false;
-      this.registerForm.disable();
+      this.userService.addUser(new User(this.emailValue,
+                                        this.firstnameValue,
+                                        this.lastnameValue,
+                                        this.passwordValue)).subscribe(user => {
+        // If successful
+        this.user = user;
+        this.loading = false;
+        this.errorMessage = false;
+        this.registerForm.disable();
       });
-
+    } else {
+      this.errorMessage = true;
+      // this.registerForm.controls.password.setErrors({'incorrect': true});
+      this.registerForm.controls.repeatPassword.setErrors({'incorrect': true});
+    }
 }
 
 }

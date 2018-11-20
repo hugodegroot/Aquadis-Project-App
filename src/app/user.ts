@@ -1,7 +1,6 @@
 export class User {
   id: number;
   email: string;
-  userName: string;
   firstName: string;
   lastName: string;
   password: string;
@@ -10,9 +9,8 @@ export class User {
   adminStatus: number;
 
   // Register User Constructor
-  constructor(email: string, username: string, firstname: string, lastname: string, password: string) {
+  constructor(email: string, firstname: string, lastname: string, password: string) {
     this.email = email;
-    this.userName = username;
     this.firstName = firstname;
     this.lastName = lastname;
     this.password = password;
