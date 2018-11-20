@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
   loading = false;
 
   loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     password: new FormControl('', Validators.required),
   });
 
-  private usernameValue;
+  private emailValue;
   private passwordValue;
 
   constructor(
@@ -46,10 +46,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loading = true;
 
-    this.usernameValue = this.loginForm.controls.username.value;
+    this.emailValue = this.loginForm.controls.email.value;
     this.passwordValue = this.loginForm.controls.password.value;
 
-    this.userService.validateLogin(this.usernameValue, this.passwordValue).subscribe(user => {this.validateLogin(user); });
+    this.userService.validateLogin(this.emailValue, this.passwordValue).subscribe(user => {this.validateLogin(user); });
 
   }
 

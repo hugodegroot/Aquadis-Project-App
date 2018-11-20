@@ -5,7 +5,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {DataService} from './data.service';
-import {Group} from "./group";
+import {Group} from './group';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -47,11 +47,11 @@ export class UserService {
   // }
 
   /** GET user$ by email. Will 404 if id not found */
-  validateLogin(username: string, password: string): Observable<User> {
-    const url = `${this.usersUrl}/user?username=${username}&password=${password}`;
+  validateLogin(email: string, password: string): Observable<User> {
+    const url = `${this.usersUrl}/user?email=${email}&password=${password}`;
     return this.http.get<User>(url).pipe(
-      tap(_ => console.log(`fetched user username=${username} password=${password}` + ' url: ' + url)),
-      catchError(this.handleError<User>(`getUserByUsername username=${username} password=${password}` + ' url: ' + url))
+      tap(_ => console.log(`fetched user username=${email} password=${password}` + ' url: ' + url)),
+      catchError(this.handleError<User>(`getUserByUsername username=${email} password=${password}` + ' url: ' + url))
     );
   }
 
@@ -112,7 +112,7 @@ export class UserService {
   }
 
   getGroups(userID: number): Observable<Group[]> {
-    return this.http.get<Group[]>(this.usersUrl + "/" + userID + "/ug/groups")
+    return this.http.get<Group[]>(this.usersUrl + '/' + userID + '/ug/groups')
       .pipe(
         tap(_ => this.log('fetched groups')),
         catchError(this.handleError('getGroups', []))
