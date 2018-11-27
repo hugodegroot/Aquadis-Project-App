@@ -1,5 +1,15 @@
 <div class="center_container">
   <h1 *ngIf="race">{{race.name}}</h1>
+
+  <div *ngIf="this.userService.isAdmin()" class="content_container">
+    <div class="inner_container">
+      <h2>Admin tools</h2>
+      <p>Change name</p>
+      <p>Change name</p>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Make your bet</button>
+    </div>
+  </div>
+
   <div class="content_container">
     <div class="inner_container">
       <h2>First off...</h2>
@@ -15,7 +25,6 @@
           </mat-select>
         </mat-form-field>
       </article>
-
       <button class="button" mat-raised-button color="primary" type="submit">Save position</button>
     </div>
   </div>
