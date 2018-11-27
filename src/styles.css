@@ -68,9 +68,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .selection_card:hover {
+  transition: all 0.1s !important;
   cursor: pointer;
   transform: scale(1.025);
-  transition: all 0.25s !important;
+}
+
+.selection_card:active {
+  transition: all 0.25s;
+  transform: scale(1);
+  box-shadow: rgba(158, 158, 158, 0.5) 0px 0px 1px;
 }
 
 .unordered_list_no_style {

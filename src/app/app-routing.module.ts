@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'yourteam', component: YourteamComponent},
   {path: 'predict', component: PredictComponent},
   {path: 'add-people', component: AddPeopleComponent},
-  {path: 'race', component: RaceComponent}
+  {path: 'race/:id', component: RaceComponent}
 ];
 
 @NgModule({

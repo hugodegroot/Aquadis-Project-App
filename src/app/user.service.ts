@@ -13,6 +13,7 @@ const httpOptions = {
 
 const loginToken = 'loginToken';
 const userIdToken = 'userIdToken';
+const adminToken = 'isAdmin';
 
 @Injectable({
   providedIn: 'root'
@@ -153,6 +154,9 @@ export class UserService {
   login(user: User): void {
     sessionStorage.setItem(loginToken, 'set');
     this.setUserId(user.id);
+    if (user.adminStatus) {
+      this.setAdmin();
+    }
   }
 
   logout(): void {
@@ -169,5 +173,13 @@ export class UserService {
 
   getUserId(): number {
     return Number(sessionStorage.getItem(userIdToken));
+  }
+
+  setAdmin(): void {
+    sessionStorage.setItem(adminToken, '1');
+  }
+
+  isAdmin(): boolean {
+    return sessionStorage.getItem(adminToken) != null;
   }
 }

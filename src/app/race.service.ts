@@ -5,6 +5,7 @@ import {Observable, of} from 'rxjs';
 import {Race} from './race';
 import {catchError, tap} from 'rxjs/operators';
 import {DataService} from './data.service';
+import {Group} from './group';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -20,6 +21,14 @@ export class RaceService {
   constructor(private dataService: DataService,
               private http: HttpClient,
               private messageService: MessageService) {
+  }
+
+  getRace(id: number): Observable<Race> {
+    const url = `${this.racesUrl}/${id}`;
+    return this.http.get<Race>(url).pipe(
+      tap(_ => console.log(`fetched Race id=${id}` + ' url: ' + url)),
+      catchError(this.handleError<Race>(`getRaceByID id=${id}` + ' url: ' + url))
+    );
   }
 
   /* GET races whose name contains search term */
@@ -70,5 +79,6 @@ export class RaceService {
   private log(message: string) {
     this.messageService.add(`RaceService: ${message}`);
   }
+
 
 }

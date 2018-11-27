@@ -5,6 +5,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {Race} from "../race";
 import {Group} from "../group";
 import {GroupService} from "../group.service";
+import {RaceService} from '../race.service';
 
 export interface Position {
   value: string;
@@ -19,7 +20,9 @@ export interface Position {
 export class RaceComponent implements OnInit {
 
   userID: number;
+  raceID: number;
   groups$: Object;
+  race: Race;
 
   positions: Position[] = [
     {value: '1', viewValue: '1'},
@@ -44,8 +47,12 @@ export class RaceComponent implements OnInit {
     {value: '20', viewValue: '20'}
   ];
 
-  constructor(private userService: UserService) {
-
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private raceService: RaceService
+              ) {
+    this.route.params.subscribe(params => {this.raceID = params.id,
+      this.getRace(this.raceID)});
   }
 
   ngOnInit() {
@@ -55,4 +62,8 @@ export class RaceComponent implements OnInit {
       data => this.groups$ = data);
   }
 
+
+  private getRace(raceID: number) {
+    this.raceService.getRace(raceID).subscribe(data => this.race = data)
+  }
 }

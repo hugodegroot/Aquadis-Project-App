@@ -1,17 +1,19 @@
 <div class="center_container">
+
   <h1 *ngIf="this.user$" class="welcomeUser">Welcome, {{this.user$.firstName}} {{this.user$.lastName}}</h1>
-  <h1 *ngIf="user$?.adminStatus == 1">
-    Is admin</h1>
+  <h1 *ngIf="this.userService.isAdmin()">Is admin</h1>
+
   <div class="content_container">
     <div class="inner_container">
-      <h2>Current races</h2>
-      <p>The current race is:</p>
+      <h2>Races</h2>
+      <p>Current race:</p>
+      <mat-card *ngIf="this.races" routerLink="/race/{{races[0].id}}" class="selection_card">{{races[0].name}}<br>{{races[0].month}} {{races[0].startDay}} - {{races[0].endDay}}</mat-card>
+      <p>All races:</p>
       <ul class="unordered_list_no_style">
-        <li>
-          <span class="badge"></span>
+        <li *ngFor="let race of races">
+            <mat-card routerLink="/race/{{race.id}}" class="selection_card">{{race.name}}</mat-card>
         </li>
       </ul>
-      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/race">Go to race!</button>
     </div>
   </div>
 
