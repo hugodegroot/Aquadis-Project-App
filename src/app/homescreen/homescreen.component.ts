@@ -18,6 +18,7 @@ export class HomescreenComponent implements OnInit {
   groups$: Group[];
   races: Race[];
   currentRace: Race;
+  loading: boolean = true;
 
   // userGroups$; Object;
   userID: number;
@@ -30,14 +31,16 @@ export class HomescreenComponent implements OnInit {
     this.userID = this.userService.getUserId();
 
     this.userService.getUser(this.userID).subscribe(
-      data => this.user$ = data);
-
-    this.userService.getGroups(this.userID).subscribe(
-      data => this.groups$ = data);
-
-    this.raceService.getRaces().subscribe(races => this.races = races);
-
-    this.raceService.getCurrentRace().subscribe(race => this.currentRace = race);
+      data => {
+        this.user$ = data, this.userService.getGroups(this.userID).subscribe(
+          data => {
+            this.groups$ = data, this.raceService.getRaces().subscribe(races => {
+              this.races = races, this.raceService.getCurrentRace().subscribe(race => {
+                this.currentRace = race, this.loading = false;
+              });
+            });
+          });
+      });
 
     // this.userService.getBudgets(this.userID).subscribe(
     //   data => this.userGroups$ = data);

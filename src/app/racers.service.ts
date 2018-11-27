@@ -35,7 +35,8 @@ export class RacersService {
       // TODO: better job of transforming error for user$ consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      alert('An API error has occurred. Please try again later!');
+      // Optional alert to the user
+      // alert('An API error has occurred. Please try again later!');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

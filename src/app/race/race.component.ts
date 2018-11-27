@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../user.service";
-import {ActivatedRoute} from "@angular/router";
+import {UserService} from '../user.service';
+import {ActivatedRoute} from '@angular/router';
 import {MatSelectModule} from '@angular/material/select';
-import {Race} from "../race";
-import {Group} from "../group";
-import {GroupService} from "../group.service";
+import {Race} from '../race';
+import {Group} from '../group';
+import {GroupService} from '../group.service';
 import {RaceService} from '../race.service';
 import {TeamService} from '../team.service';
 import {Team} from '../team';
@@ -25,7 +25,12 @@ export class RaceComponent implements OnInit {
   raceID: number;
   groups$: Group[];
   race: Race;
+  currentRace: Race;
   teams: Team[];
+
+  loading: boolean = true;
+
+  isCurrentRace: Boolean = false;
 
   positions: Position[] = [
     {value: '1', viewValue: '1'},
@@ -54,21 +59,36 @@ export class RaceComponent implements OnInit {
               private route: ActivatedRoute,
               private raceService: RaceService,
               private teamService: TeamService
-              ) {
-    this.route.params.subscribe(params => {this.raceID = params.id,
-      this.getRace(this.raceID)});
+  ) {
+    this.route.params.subscribe(params => {
+      this.raceID = params.id,
+        this.getRace(this.raceID);
+    });
   }
 
   ngOnInit() {
     this.userID = this.userService.getUserId();
 
     this.userService.getGroups(this.userID).subscribe(
-      data => this.groups$ = data);
+      data => {
+        this.groups$ = data, this.teamService.getTeams().subscribe(teams => {
+          this.teams = teams, console.log(teams), this.loading = false;
+        });
+      });
 
-    this.teamService.getTeams().subscribe(teams => {this.teams = teams, console.log(teams)});
   }
 
   private getRace(raceID: number) {
-    this.raceService.getRace(raceID).subscribe(data => this.race = data)
+    this.raceService.getRace(raceID).subscribe(data => {
+      this.race = data,
+        this.raceService.getCurrentRace().subscribe(race => {
+          this.currentRace = race,
+            this.isCurrentRace = this.compareRaces(this.race, this.currentRace), this.loading = false;
+        });
+    });
+  }
+
+  private compareRaces(race: Race, currentRace: Race) {
+    return race.id === currentRace.id;
   }
 }

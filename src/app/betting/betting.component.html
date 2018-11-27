@@ -26,7 +26,7 @@
       <div id="title">
         <h2>All racers in this pool: </h2>
       </div>
-      <table class="" style="width: 100%">
+      <table class="table">
         <tr>
           <th>Name</th>
           <th>Salary</th>
@@ -35,8 +35,8 @@
           <td>{{racer.lastName}}</td>
           <td>{{racer.salary}}</td>
         </tr>
-
       </table>
     </div>
   </div>
 </div>
+<mat-spinner class="loader" *ngIf="loading"></mat-spinner>

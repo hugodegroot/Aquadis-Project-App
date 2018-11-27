@@ -18,6 +18,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+h1 {
+  text-align: center;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -35,6 +39,15 @@ body {
 .button {
   /*margin-top: 10px !important;*/
   margin-right: 10px !important;
+}
+
+
+.table {
+  width: 100%;
+}
+
+.table th {
+  text-align: left;
 }
 
 .content_container {
@@ -98,6 +111,7 @@ body {
   transition: all 0.1s !important;
   cursor: pointer;
   transform: scale(1.025);
+  z-index: 1000000000000;
 }
 
 .selection_card:active {
@@ -156,6 +170,10 @@ details[open] summary ~ * {
   animation: sweep .5s ease-in-out;
 }
 
+details[open] summary mat-card:hover {
+  transform: scale(1.01) !important;
+}
+
 details[open] {
   transition: all 0.5s !important;
   box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
@@ -172,6 +190,24 @@ details[open] {
   100%  {opacity: 1; margin-left: 0px; margin-right: 0px}
 }
 
+/*Large screen query*/
+@media only screen and (min-width: 1000px) {
+
+details {
+  margin-bottom: 3px;
+  transition: all 0.5s !important;
+  width: 50%;
+  display: inline-block !important;
+  box-sizing: border-box;
+}
+
+  h2 {
+    text-align: center;
+  }
+
+}
+
+/*Mobile Query*/
 @media only screen and (max-width: 650px) {
 
   .center_container {

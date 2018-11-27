@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'homescreen', component: HomescreenComponent},
-  {path: 'betting', component: BettingComponent},
+  {path: 'betting/:idd', component: BettingComponent},
   {path: 'group', component: GroupPageComponent},
   {path: 'group/:id', component: GroupPageComponent},
   {path: 'add-group', component: AddGroupComponent},

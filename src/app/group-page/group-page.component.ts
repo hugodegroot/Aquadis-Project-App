@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {Group} from '../group';
 import {GroupService} from '../group.service';
 import {UserService} from '../user.service';
+import {User} from '../user';
 
 @Component({
   selector: 'app-group-page',
@@ -14,17 +15,13 @@ import {UserService} from '../user.service';
 })
 export class GroupPageComponent implements OnInit {
 
-  private router: Router;
-
-  group$: Object;
-
-  groups$: object;
-
-  users$: Object;
-
+  group$: Group;
+  groups$: Group[];
+  users$: User[];
   groupID: number;
 
   selectedGroup: Group;
+  loading: boolean = true;
 
   onSelect(group: Group): void {
     this.selectedGroup = group;
@@ -39,8 +36,10 @@ export class GroupPageComponent implements OnInit {
   }
 
   refreshGroup() {
-    this.route.params.subscribe(params => {this.groupID = params.id,
-                                                this.showGroups()});
+    this.route.params.subscribe(params => {
+      this.groupID = params.id,
+        this.showGroups();
+    });
   }
 
   showGroups() {
@@ -48,11 +47,13 @@ export class GroupPageComponent implements OnInit {
       this.groupService.getGroup(this.groupID).subscribe(group => this.group$ = group);
     }
     this.userService.getGroups(this.userService.getUserId()).subscribe(
-      data => this.groups$ = data);
-
-    this.groupService.getUsers(this.groupID).subscribe(
-      data => this.users$ = data
-    );
+      data => {
+        this.groups$ = data, this.groupService.getUsers(this.groupID).subscribe(
+          data => {
+            this.users$ = data, this.loading = false;
+          }
+        );
+      });
   }
 
   ngOnInit() {
