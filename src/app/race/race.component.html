@@ -14,7 +14,6 @@
     <div class="inner_container">
       <h2>First off...</h2>
       <p>Bet on Max Verstappen his ending position to gain some extra points!</p>
-
       <article>
         <h4><span>Select a position:</span></h4>
         <mat-form-field>
@@ -31,11 +30,23 @@
 
   <div class="content_container">
     <div class="inner_container">
+      <h2>Teams</h2>
+      <p>Participating Teams!</p>
+        <details *ngFor="let team of teams">
+          <summary><mat-card class="selection_card"><p class="card_text_ellipsis"><mat-icon class="icon">people_outline</mat-icon>{{team.name}}</p></mat-card></summary>
+          <mat-card *ngFor="let racer of team.racer" class="selection_card_half_width"><p class="card_text_ellipsis"><mat-icon class="icon">person_outline</mat-icon>{{racer.firstName}} {{racer.lastName}}</p><mat-icon class="icon">attach_money</mat-icon>{{racer.salary}}</mat-card>
+        </details>
+      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Make your bet</button>
+    </div>
+  </div>
+
+  <div class="content_container">
+    <div class="inner_container">
       <h2>Groups</h2>
       <p>Your groups:</p>
-      <ul class="groups">
-        <li *ngFor="let group of groups">
-          <a class="badge">{{group.name}}</a>
+      <ul class="unordered_list_no_style">
+        <li *ngFor="let group of groups$">
+          <mat-card routerLink="/group/{{group.id}}" class="selection_card"><mat-icon class="icon">group</mat-icon>{{group.name}}</mat-card>
         </li>
       </ul>
       <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Make your bet</button>

@@ -1,4 +1,4 @@
-export class Racers {
+export class Racer {
   id: number;
   firstName: string;
   lastName: string;

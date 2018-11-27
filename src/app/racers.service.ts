@@ -3,7 +3,7 @@ import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {catchError, tap} from 'rxjs/operators';
-import {Racers} from './racers';
+import {Racer} from './racer';
 import {DataService} from './data.service';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class RacersService {
               private messageService: MessageService) {
   }
 
-  getRacers(): Observable<Racers[]> {
-    return this.http.get<Racers[]>(this.racersUrl)
+  getRacers(): Observable<Racer[]> {
+    return this.http.get<Racer[]>(this.racersUrl)
       .pipe(
         tap(_ => this.log('fetched racers')),
         catchError(this.handleError('getRacers', []))

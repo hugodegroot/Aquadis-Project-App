@@ -33,7 +33,7 @@ body {
 }
 
 .button {
-  margin-top: 10px !important;
+  /*margin-top: 10px !important;*/
   margin-right: 10px !important;
 }
 
@@ -60,6 +60,13 @@ body {
 
 .notice_message {
   color: inherit;
+}
+
+.card_text_ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
 }
 
 .loader {
@@ -99,6 +106,14 @@ body {
   box-shadow: rgba(158, 158, 158, 0.5) 0px 0px 1px;
 }
 
+.selection_card_half_width {
+  margin-bottom: 3px;
+  transition: all 0.5s !important;
+  width: 49.5%;
+  display: inline-block !important;
+  box-sizing: border-box;
+}
+
 .unordered_list_no_style {
   list-style: none;
   padding: 0;
@@ -120,6 +135,41 @@ body {
 
 .form_input_half_width {
   width: 50%;
+}
+
+summary {
+  /*text-align: center;*/
+  transition: all 0.5s !important;
+}
+
+details .selection_card_half_width:last-child {
+  float: right;
+}
+
+details summary::-webkit-details-marker {
+  transition: all 0.5s !important;
+  display:none;
+}
+
+details[open] summary ~ * {
+  transition: all 0.5s !important;
+  animation: sweep .5s ease-in-out;
+}
+
+details[open] {
+  transition: all 0.5s !important;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  margin-bottom: 10px;
+  padding: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #3f51b5;
+}
+
+@keyframes sweep {
+  0%    {opacity: 0; margin-left: -80vw; margin-right: 80vw}
+  100%  {opacity: 1; margin-left: 0px; margin-right: 0px}
 }
 
 @media only screen and (max-width: 650px) {

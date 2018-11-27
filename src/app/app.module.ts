@@ -29,7 +29,6 @@ import { BettingComponent } from './betting/betting.component';
 import { GroupPageComponent } from './group-page/group-page.component';
 import { AddGroupComponent } from './add-group/add-group.component';
 import { RaceteamComponent } from './raceteam/raceteam.component';
-import { YourteamComponent } from './yourteam/yourteam.component';
 import { PredictComponent } from './predict/predict.component';
 import { AddPeopleComponent } from './add-people/add-people.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -49,7 +48,6 @@ import { AddRaceComponent } from './add-race/add-race.component';
     GroupPageComponent,
     AddGroupComponent,
     RaceteamComponent,
-    YourteamComponent,
     PredictComponent,
     AddPeopleComponent,
     RegisterComponent,

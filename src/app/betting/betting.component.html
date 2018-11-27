@@ -26,17 +26,17 @@
       <div id="title">
         <h2>All racers in this pool: </h2>
       </div>
-      <ul class="racers">
-        <li *ngFor="let racer of Racers$">
-            <div style='float:left; width:12%'>
-              {{racer.lastName}}
-            </div>
+      <table class="" style="width: 100%">
+        <tr>
+          <th>Name</th>
+          <th>Salary</th>
+        </tr>
+        <tr *ngFor="let racer of Racers$">
+          <td>{{racer.lastName}}</td>
+          <td>{{racer.salary}}</td>
+        </tr>
 
-            <div style='float:left; width:20%; margin-left:30px'>
-              {{racer.salary}}
-            </div>
-        </li>
-      </ul>
+      </table>
     </div>
   </div>
 </div>

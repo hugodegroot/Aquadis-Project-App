@@ -8,7 +8,6 @@ import {BettingComponent} from './betting/betting.component';
 import {GroupPageComponent} from './group-page/group-page.component';
 import {AddGroupComponent} from './add-group/add-group.component';
 import {RaceteamComponent} from './raceteam/raceteam.component';
-import {YourteamComponent} from './yourteam/yourteam.component';
 import {PredictComponent} from './predict/predict.component';
 import {AddPeopleComponent} from './add-people/add-people.component';
 import {RegisterComponent} from './register/register.component';
@@ -26,7 +25,6 @@ const routes: Routes = [
   {path: 'group/:id', component: GroupPageComponent},
   {path: 'add-group', component: AddGroupComponent},
   {path: 'raceteam', component: RaceteamComponent},
-  {path: 'yourteam', component: YourteamComponent},
   {path: 'predict', component: PredictComponent},
   {path: 'add-people', component: AddPeopleComponent},
   {path: 'race/:id', component: RaceComponent},

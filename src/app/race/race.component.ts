@@ -6,6 +6,8 @@ import {Race} from "../race";
 import {Group} from "../group";
 import {GroupService} from "../group.service";
 import {RaceService} from '../race.service';
+import {TeamService} from '../team.service';
+import {Team} from '../team';
 
 export interface Position {
   value: string;
@@ -21,8 +23,9 @@ export class RaceComponent implements OnInit {
 
   userID: number;
   raceID: number;
-  groups$: Object;
+  groups$: Group[];
   race: Race;
+  teams: Team[];
 
   positions: Position[] = [
     {value: '1', viewValue: '1'},
@@ -49,7 +52,8 @@ export class RaceComponent implements OnInit {
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
-              private raceService: RaceService
+              private raceService: RaceService,
+              private teamService: TeamService
               ) {
     this.route.params.subscribe(params => {this.raceID = params.id,
       this.getRace(this.raceID)});
@@ -60,8 +64,9 @@ export class RaceComponent implements OnInit {
 
     this.userService.getGroups(this.userID).subscribe(
       data => this.groups$ = data);
-  }
 
+    this.teamService.getTeams().subscribe(teams => {this.teams = teams, console.log(teams)});
+  }
 
   private getRace(raceID: number) {
     this.raceService.getRace(raceID).subscribe(data => this.race = data)
