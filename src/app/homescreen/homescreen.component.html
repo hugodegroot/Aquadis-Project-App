@@ -7,7 +7,7 @@
     <div class="inner_container">
       <h2>Races</h2>
       <p>Current race:</p>
-      <mat-card *ngIf="this.races" routerLink="/race/{{races[0].id}}" class="selection_card">{{races[0].name}}<br>{{races[0].month}} {{races[0].startDay}} - {{races[0].endDay}}</mat-card>
+      <mat-card *ngIf="this.races" routerLink="/race/{{races[0].id}}" class="selection_card">{{races[0].name}}<br><mat-icon class="icon">date_range</mat-icon>{{races[0].startDate | date:'MMMM d'}}   - {{races[0].endDate | date:'longDate'}}</mat-card>
       <p>All races:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let race of races">
