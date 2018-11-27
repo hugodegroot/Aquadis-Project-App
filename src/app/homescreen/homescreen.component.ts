@@ -3,6 +3,8 @@ import {UserService} from '../user.service';
 import {GroupService} from '../group.service';
 import {RaceService} from '../race.service';
 import {Race} from '../race';
+import {Group} from '../group';
+import {User} from '../user';
 
 
 @Component({
@@ -12,9 +14,11 @@ import {Race} from '../race';
 })
 export class HomescreenComponent implements OnInit {
 
-  user$: Object;
-  groups$: Object;
+  user$: User;
+  groups$: Group[];
   races: Race[];
+  currentRace: Race;
+
   // userGroups$; Object;
   userID: number;
 
@@ -33,6 +37,7 @@ export class HomescreenComponent implements OnInit {
 
     this.raceService.getRaces().subscribe(races => this.races = races);
 
+    this.raceService.getCurrentRace().subscribe(race => this.currentRace = race);
 
     // this.userService.getBudgets(this.userID).subscribe(
     //   data => this.userGroups$ = data);

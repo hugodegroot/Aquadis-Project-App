@@ -7,11 +7,12 @@
     <div class="inner_container">
       <h2>Races</h2>
       <p>Current race:</p>
-      <mat-card *ngIf="this.races" routerLink="/race/{{races[0].id}}" class="selection_card">{{races[0].name}}<br><mat-icon class="icon">date_range</mat-icon>{{races[0].startDate | date:'MMMM d'}}   - {{races[0].endDate | date:'longDate'}}</mat-card>
+      <mat-card *ngIf="this.currentRace" routerLink="/race/{{currentRace.id}}" class="selection_card"><mat-icon class="icon">label</mat-icon>{{currentRace.name}}<br>
+        <mat-icon class="icon">date_range</mat-icon>{{currentRace.startDate | date:'MMMM d'}}   - {{currentRace.endDate | date:'longDate'}}</mat-card>
       <p>All races:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let race of races">
-            <mat-card routerLink="/race/{{race.id}}" class="selection_card">{{race.name}}</mat-card>
+            <mat-card routerLink="/race/{{race.id}}" class="selection_card"><mat-icon class="icon">label</mat-icon>{{race.name}}</mat-card>
         </li>
       </ul>
       <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-race">Add new race
@@ -25,7 +26,7 @@
       <p>Your groups:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups$">
-          <mat-card routerLink="/group/{{group.id}}" class="selection_card">{{group.name}}</mat-card>
+          <mat-card routerLink="/group/{{group.id}}" class="selection_card"><mat-icon class="icon">label</mat-icon>{{group.name}}</mat-card>
         </li>
       </ul>
       <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-group">Add new group

@@ -21,7 +21,7 @@
       <p>Select a group</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups$" (click)="onSelect(group)">
-          <mat-card class="selection_card">{{group.id}} {{group.name}}</mat-card>
+          <mat-card class="selection_card"><mat-icon class="icon">label</mat-icon>{{group.name}}</mat-card>
         </li>
       </ul>
       <div *ngIf="selectedGroup">

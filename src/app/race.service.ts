@@ -32,6 +32,14 @@ export class RaceService {
     );
   }
 
+  getCurrentRace(): Observable<Race> {
+    const url = `${this.racesUrl}/race`;
+    return this.http.get<Race>(url).pipe(
+      tap(_ => console.log(`fetched Current Race` + ' url: ' + url)),
+      catchError(this.handleError<Race>(`getCurrentRace` + ' url: ' + url))
+    );
+  }
+
   /* GET races whose name contains search term */
   searchRacesByName(term: string): Observable<Race[]> {
     if (!term.trim()) {
