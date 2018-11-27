@@ -6,6 +6,7 @@ import {Race} from './race';
 import {catchError, tap} from 'rxjs/operators';
 import {DataService} from './data.service';
 import {Group} from './group';
+import {User} from './user';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -52,6 +53,13 @@ export class RaceService {
       );
   }
 
+  addRace(race: Race): Observable<Race> {
+    return this.http.post<Race>(this.racesUrl + '/race', race, httpOptions).pipe(
+      tap((race: Race) => this.log(`added race w/ id=${race.id}`)),
+      catchError(this.handleError<Race>('AddRace'))
+    );
+  }
+
   /** DELETE: delete the hero from the server */
   deleteRace(race: Race | number): Observable<Race> {
     const id = typeof race === 'number' ? race : race.id;
@@ -79,6 +87,5 @@ export class RaceService {
   private log(message: string) {
     this.messageService.add(`RaceService: ${message}`);
   }
-
 
 }

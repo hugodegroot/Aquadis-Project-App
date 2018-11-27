@@ -12,12 +12,13 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 // Angular Material Design
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import 'hammerjs';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -69,7 +70,9 @@ import { AddRaceComponent } from './add-race/add-race.component';
     MatCardModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
