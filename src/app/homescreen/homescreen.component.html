@@ -36,7 +36,7 @@
       <p>Your groups:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups$">
-          <mat-card routerLink="/group/s{{group.id}}" class="selection_card">
+          <mat-card routerLink="/group/{{group.id}}" class="selection_card">
             <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
               <mat-icon class="icon">group</mat-icon>
               {{group.name}}</div>
