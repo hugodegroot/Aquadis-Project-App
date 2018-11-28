@@ -1,21 +1,31 @@
 <div class="center_container">
 
   <h1 *ngIf="this.user$" class="welcomeUser">Welcome, {{this.user$.firstName}} {{this.user$.lastName}}</h1>
-  <h1 *ngIf="this.userService.isAdmin()">Is admin</h1>
+  <h2 *ngIf="this.userService.isAdmin()">Administrator</h2>
 
   <div class="content_container">
     <div class="inner_container">
       <h2>Races</h2>
       <p>Current race:</p>
-      <mat-card *ngIf="this.currentRace" routerLink="/race/{{currentRace.id}}" class="selection_card"><mat-icon class="icon">label</mat-icon>{{currentRace.name}}<br>
-        <mat-icon class="icon">date_range</mat-icon>{{currentRace.startDate | date:'MMMM d'}}   - {{currentRace.endDate | date:'longDate'}}</mat-card>
+      <mat-card *ngIf="this.currentRace" routerLink="/race/{{currentRace.id}}" class="selection_card">
+        <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+          <mat-icon class="icon">label</mat-icon>
+          {{currentRace.name}}<br>
+          <mat-icon class="icon">date_range</mat-icon>
+          {{currentRace.startDate | date:'MMMM d'}}   - {{currentRace.endDate | date:'longDate'}}</div>
+      </mat-card>
       <p>Upcoming races:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let race of races; let i = index">
-            <mat-card *ngIf="i < 3" routerLink="/race/{{race.id}}" class="selection_card"><mat-icon class="icon">label</mat-icon>{{race.name}}</mat-card>
+          <mat-card *ngIf="i < 3" routerLink="/race/{{race.id}}" class="selection_card">
+            <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+              <mat-icon class="icon">label</mat-icon>
+              {{race.name}}</div>
+          </mat-card>
         </li>
       </ul>
-      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-race">Add new race
+      <button *ngIf="this.userService.isAdmin()" class="button" mat-raised-button color="primary" type="submit"
+              routerLink="/add-race">Add new race
       </button>
     </div>
   </div>
@@ -26,7 +36,11 @@
       <p>Your groups:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups$">
-          <mat-card routerLink="/group/{{group.id}}" class="selection_card"><mat-icon class="icon">group</mat-icon>{{group.name}}</mat-card>
+          <mat-card routerLink="/group/{{group.id}}" class="selection_card">
+            <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+              <mat-icon class="icon">group</mat-icon>
+              {{group.name}}</div>
+          </mat-card>
         </li>
       </ul>
       <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-group">Add new group

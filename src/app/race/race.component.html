@@ -36,22 +36,18 @@
       <details *ngFor="let team of teams">
         <summary>
           <mat-card class="selection_card">
-            <p class="card_text_ellipsis">
-              <mat-icon class="icon">people_outline</mat-icon>
-              {{team.name}}
-            </p>
-          </mat-card>
+            <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+              <p class="card_text_ellipsis">
+                <mat-icon class="icon">people_outline</mat-icon>
+                {{team.name}}</p>
+            </div></mat-card>
         </summary>
-        <mat-card *ngFor="let racer of team.racer" class="selection_card_half_width">
+        <mat-card *ngFor="let racer of team.racer" class="selection_card_half_width"><div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
           <p class="card_text_ellipsis">
             <mat-icon class="icon">person_outline</mat-icon>
-            {{racer.firstName.charAt(1).toUpperCase()}}. {{racer.lastName}}
-          </p>
-          <p>
-            <mat-icon class="icon">attach_money</mat-icon>
-            {{racer.salary.toLocaleString('en')}}
-          </p>
-        </mat-card>
+            {{racer.firstName}} {{racer.lastName}}</p>
+          <mat-icon class="icon">attach_money</mat-icon>
+          {{racer.salary}}</div></mat-card>
       </details>
     </div>
   </div>
@@ -63,10 +59,9 @@
       <p>Choose a group to bet with:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups$">
-          <mat-card routerLink="/betting/{{group.id}}" class="selection_card">
+          <mat-card routerLink="/betting/{{group.id}}" class="selection_card"><div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
             <mat-icon class="icon">group</mat-icon>
-            {{group.name}}
-          </mat-card>
+            {{group.name}}</div></mat-card>
         </li>
       </ul>
     </div>

@@ -21,11 +21,16 @@
       <p>Select a group</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let group of groups$" (click)="onSelect(group)">
-          <mat-card class="selection_card"><mat-icon class="icon">label</mat-icon>{{group.name}}</mat-card>
+          <mat-card class="selection_card">
+            <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+              <mat-icon class="icon">label</mat-icon>
+              {{group.name}}
+            </div></mat-card>
         </li>
       </ul>
       <div *ngIf="selectedGroup">
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group/{{selectedGroup.id}}" (click)="refreshGroup()" >Change group
+        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group/{{selectedGroup.id}}"
+                (click)="refreshGroup()">Change group
         </button>
       </div>
 
