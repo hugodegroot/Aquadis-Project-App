@@ -13,10 +13,8 @@
 
   <div *ngIf="isCurrentRace" class="content_container">
     <div class="inner_container">
-      <h2>First off...</h2>
-      <p>Bet on Max Verstappen his ending position to gain some extra points!</p>
+      <h2>Predict Max' position</h2>
       <article>
-        <h4><span>Select a position:</span></h4>
         <mat-form-field>
           <mat-select placeholder="Position">
             <mat-option *ngFor="let position of positions" [value]="position.value">
