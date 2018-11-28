@@ -64,7 +64,7 @@ h1 {
 .center_container {
   margin: 0 auto;
   width: 65%;
-  max-width: 650px;
+  max-width: 750px;
 }
 
 .error_message {
@@ -80,6 +80,7 @@ h1 {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
+  margin: 0;
 }
 
 .loader {
@@ -105,6 +106,7 @@ h1 {
 .selection_card {
   margin-bottom: 10px;
   transition: all 0.5s !important;
+  padding: 0 !important;
 }
 
 .selection_card:hover {
@@ -126,11 +128,17 @@ h1 {
   width: 49.5%;
   display: inline-block !important;
   box-sizing: border-box;
+  padding: 0 !important;
+}
+
+.selection_card_ripple_content {
+  padding: 15px;
 }
 
 .unordered_list_no_style {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .form {
