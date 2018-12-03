@@ -47,6 +47,14 @@ export class GroupService {
       );
   }
 
+  /** POST: add a new group to the server */
+  addGroup(group: Group): Observable<Group> {
+    return this.http.post<Group>(this.groupsUrl + '/group', group, httpOptions).pipe(
+      tap((group: Group) => this.log(`added group w/ id=${group.id}`)),
+      catchError(this.handleError<Group>('AddGroup'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
