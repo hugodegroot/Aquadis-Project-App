@@ -1,14 +1,25 @@
 <div class="center_container">
-  <h1>Make your prediction!</h1>
+  <h1>Make a new group!</h1>
   <div class="content_container">
     <div class="inner_container">
-      <h2>Add new group</h2>
+      <form [formGroup]="groupForm" (ngSubmit)="onSubmit()" class="createGroup_form">
+        <h2>Give your new group a unique name</h2>
+        <p *ngIf="this.group" class="notice_message">New group created: "<u>{{this.group.name}}</u>"</p>
+        <p *ngIf="this.errorMessage" class="error_message">Group name already exists</p>
 
-      <input type="text" [(ngModel)]="valueName" placeholder="Name">
-      <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/homescreen">Add group
-        </button>
-      </div>
+        <div class="input">
+        <mat-form-field class="form_input">
+          <input matInput type="text" placeholder="Name" formControlName="groupName" required>
+        </mat-form-field>
+        </div>
+
+        <div>
+          <button class="button" mat-raised-button color="primary" type="submit" [disabled]="!groupForm.valid">Create group
+          </button>
+        </div>
+      </form>
+      <mat-spinner class="loader" *ngIf="loading"></mat-spinner>
+
     </div>
   </div>
 </div>
