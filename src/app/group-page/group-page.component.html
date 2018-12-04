@@ -36,11 +36,11 @@
 
       <div *ngIf="selectedGroup">
         <h2>{{selectedGroup.name | uppercase}} Details</h2>
-        <div><span>id: </span>{{selectedGroup.id}}</div>
+        <p>id: {{selectedGroup.id}}</p>
         <div>
-          <label>name:
-            <input [(ngModel)]="selectedGroup.name" placeholder="name">
-          </label>
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Name" [(ngModel)]="selectedGroup.name">
+          </mat-form-field>
         </div>
       </div>
 
