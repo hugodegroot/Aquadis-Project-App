@@ -1,7 +1,11 @@
-<h1 mat-dialog-title>Updated!</h1>
-<div mat-dialog-content>
-  <p>Salary updated to: {{data.salary}}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button class="button" [mat-dialog-close]=""data.animal cdkFocusInitial>Ok</button>
+<div class="dialog">
+  <h1 mat-dialog-title>Updated!</h1>
+  <div mat-dialog-content>
+    <p>Salary updated to: {{data.salary.toLocaleString('en')}}
+      <mat-icon class="icon">attach_money</mat-icon>
+    </p>
+  </div>
+  <div class="dialog_actions" mat-dialog-actions>
+    <button mat-button class="button" [mat-dialog-close]="" data.animal cdkFocusInitial>Ok</button>
+  </div>
 </div>

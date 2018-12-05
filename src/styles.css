@@ -160,6 +160,14 @@ h1 {
   width: 50%;
 }
 
+.dialog {
+  text-align: center;
+}
+
+.dialog_actions {
+  display: block !important;
+}
+
 summary {
   /*text-align: center;*/
   transition: all 0.5s !important;

@@ -111,7 +111,8 @@ export class RaceComponent implements OnInit {
 
   private showDialog(racerId: number, salary: number) {
     const dialogRef = this.dialog.open(matDialogSalaryUpdated, {
-      width: '250px',
+      width: '350px',
+
       data: {racerId: racerId, salary: salary}
     });
 
