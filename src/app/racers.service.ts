@@ -1,10 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {catchError, tap} from 'rxjs/operators';
 import {Racer} from './racer';
 import {DataService} from './data.service';
+import {UserService} from './user.service';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +20,8 @@ export class RacersService {
 
   constructor(private dataService: DataService,
               private http: HttpClient,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private userService: UserService) {
   }
 
   getRacers(): Observable<Racer[]> {
@@ -24,6 +30,14 @@ export class RacersService {
         tap(_ => this.log('fetched racers')),
         catchError(this.handleError('getRacers', []))
       );
+  }
+
+  /** PUT: update the hero on the server */
+  updateRacerSalary(racerId: number, salary: number) {
+    return this.http.put(this.racersUrl + `/racer?id=${racerId}&salary=${salary}`,httpOptions).pipe(
+      tap(_ => this.log(`updated racer id=${racerId}`)),
+      catchError(this.handleError<any>('updateRacer'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

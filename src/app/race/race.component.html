@@ -48,10 +48,22 @@
           <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
             <p class="card_text_ellipsis">
               <mat-icon class="icon">person_outline</mat-icon>
-              {{racer.firstName.charAt(1).toUpperCase()}}. {{racer.lastName}}
+              {{racer.firstName.charAt(0)}}. {{racer.lastName}}
             </p>
-            <mat-icon class="icon">attach_money</mat-icon>
-            {{racer.salary.toLocaleString('en')}}
+            <div *ngIf="!this.userService.isAdmin()">
+              <mat-icon class="icon">attach_money</mat-icon>
+              {{racer.salary.toLocaleString('en')}}
+            </div>
+            <div *ngIf="this.userService.isAdmin()">
+              <p *ngIf="this.errorMessage" class="error_message">Error while changing salary</p>
+              <mat-form-field class="form_input">
+                <input matInput placeholder="Salary" min="1000000" max="20000000" type="number" step="1000000"
+                       [(ngModel)]="racer.salary">
+              </mat-form-field>
+              <button class="button" mat-raised-button color="primary"
+                      (click)="updateRacerSalary(racer.id,racer.salary)">Update
+              </button>
+            </div>
           </div>
         </mat-card>
       </details>

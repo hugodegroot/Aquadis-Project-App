@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {ActivatedRoute} from '@angular/router';
 import {MatSelectModule} from '@angular/material/select';
@@ -8,10 +8,18 @@ import {GroupService} from '../group.service';
 import {RaceService} from '../race.service';
 import {TeamService} from '../team.service';
 import {Team} from '../team';
+import {RacersService} from '../racers.service';
+import {Racer} from '../racer';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 export interface Position {
   value: string;
   viewValue: string;
+}
+
+export interface DialogData {
+  racerId: number;
+  salary: number;
 }
 
 @Component({
@@ -27,10 +35,13 @@ export class RaceComponent implements OnInit {
   race: Race;
   currentRace: Race;
   teams: Team[];
+  racer: Racer;
 
   loading: boolean = true;
 
   isCurrentRace: Boolean = false;
+
+  errorMessage: Boolean = false;
 
   positions: Position[] = [
     {value: '1', viewValue: '1'},
@@ -58,7 +69,9 @@ export class RaceComponent implements OnInit {
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private raceService: RaceService,
-              private teamService: TeamService
+              private teamService: TeamService,
+              private racersService: RacersService,
+              public dialog: MatDialog
   ) {
     this.route.params.subscribe(params => {
       this.raceID = params.id,
@@ -88,7 +101,43 @@ export class RaceComponent implements OnInit {
     });
   }
 
+  private updateRacerSalary(racerId: number, salary: number) {
+    this.racersService.updateRacerSalary(racerId, salary).subscribe(racer => this.racer = racer, () => {
+      this.errorMessage = true;
+    }, () => {
+      this.showDialog(racerId, salary);
+    });
+  }
+
+  private showDialog(racerId: number, salary: number) {
+    const dialogRef = this.dialog.open(matDialogSalaryUpdated, {
+      width: '250px',
+      data: {racerId: racerId, salary: salary}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   private compareRaces(race: Race, currentRace: Race) {
     return race.id === currentRace.id;
   }
+}
+
+@Component({
+  selector: 'matDialogSalaryUpdated',
+  templateUrl: 'matDialogSalaryUpdated.html',
+})
+export class matDialogSalaryUpdated {
+
+  constructor(
+    public dialogRef: MatDialogRef<matDialogSalaryUpdated>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
