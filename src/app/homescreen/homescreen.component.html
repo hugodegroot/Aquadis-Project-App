@@ -17,7 +17,7 @@
       <p>Upcoming races:</p>
       <ul class="unordered_list_no_style">
         <li *ngFor="let race of races; let i = index">
-          <mat-card *ngIf="i < 3" routerLink="/race/{{race.id}}" class="selection_card">
+          <mat-card *ngIf="i < 4" routerLink="/race/{{race.id}}" class="selection_card">
             <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
               <mat-icon class="icon">label</mat-icon>
               {{race.name}}</div>

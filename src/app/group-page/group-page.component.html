@@ -8,6 +8,9 @@
         <li *ngFor="let user of users$">
           <span class="badge">{{user.firstName}} {{user.lastName}}</span>
         </li>
+        <!--<li *ngFor="let user of group$.users">-->
+          <!--<span class="badge">{{user.firstName}} {{user.lastName}} {{user.points}}</span>-->
+        <!--</li>-->
       </ul>
       <div>
         <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-people">Add people
