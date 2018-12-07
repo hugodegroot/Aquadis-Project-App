@@ -1,5 +1,8 @@
 <mat-toolbar color="primary" class="header">
   <span class="title" (click)="goHome()">AquaScore</span>
-    <button *ngIf="!this.router.url.includes('/homescreen') && !this.router.url.includes('/login')" id="backButton" (click)="goBack()" mat-button><mat-icon>keyboard_backspace</mat-icon></button>
-    <button *ngIf="this.userService.isLogged()" id="logoutButton" (click)="logout()" mat-button>logOut</button>
+  <button *ngIf="!this.router.url.includes('/homescreen') && !this.router.url.includes('/login')" id="backButton"
+          (click)="goBack()" mat-button>
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+  <button *ngIf="this.userService.isLogged()" id="logoutButton" (click)="logout()" mat-button>logOut</button>
 </mat-toolbar>
