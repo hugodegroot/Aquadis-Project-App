@@ -96,6 +96,14 @@ export class UserService {
       );
   }
 
+  getUsersFromGroup(userID: number, groupID: number): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl + "/" + userID + "/ug/groups/" + groupID + "/users")
+      .pipe(
+        tap(_ => this.log('fetched users')),
+        catchError(this.handleError('getUsers', []))
+      );
+  }
+
   // getBudgets(userID: number): Observable<User[]> {
   //   return this.http.get<User[]>(this.usersUrl + "/" + userID + "/ug/" + userID)
   //     .pipe(
