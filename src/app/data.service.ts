@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 export class DataService {
 
   // change localhost to the local ip. cmd -> ipconfig
-  apiUrl: String = 'http://145.28.231.136:8080/aquadis/rest';
+  apiUrl: String = 'http://localhost:8080/aquadis/rest';
 
   constructor() {
   }

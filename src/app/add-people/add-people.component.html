@@ -2,11 +2,28 @@
   <h1>Add to group!</h1>
   <div class="content_container">
     <div class="inner_container">
-      <h2>Add a person to your group</h2>
-      <p>search for a user</p>
 
+      <!--search bar-->
       <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group">Add this person
+        <input type="search" placeholder="Search: name or email">
+        <!--<mat-icon class="icon" (click)="users$.value=''">search</mat-icon>-->
+      </div>
+
+      <!--place for all the user from the database-->
+      <ul class="user_list">
+        <!--every user-->
+        <li  *ngFor="let user of users$">
+          <button class="user" (click)="selectUser(user)">
+            <mat-icon class="icon">person</mat-icon>
+            {{user.firstName}} {{user.lastName}}
+          </button>
+        </li>
+      </ul>
+
+      <!--button to add the user-->
+      <div *ngIf="selectedUser$">
+        <button class="button" (click)="addUser()" routerLink="/group/{{groupID}}">
+          Add {{selectedUser$.firstName}} {{selectedUser$.lastName}}
         </button>
       </div>
     </div>

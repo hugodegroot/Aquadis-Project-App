@@ -10,8 +10,7 @@
         </div>
       </div>
       <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-people">Add people
-        </button>
+        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group/{{groupID}}/add-people">Add player</button>
       </div>
     </div>
   </div>
@@ -34,17 +33,6 @@
                 (click)="refreshGroup()">Change group
         </button>
       </div>
-
-      <div *ngIf="selectedGroup">
-        <h2>{{selectedGroup.name | uppercase}} Details</h2>
-        <p>id: {{selectedGroup.id}}</p>
-        <div>
-          <mat-form-field style="width: 100%">
-            <input matInput placeholder="Name" [(ngModel)]="selectedGroup.name">
-          </mat-form-field>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
