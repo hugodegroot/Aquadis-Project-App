@@ -46,7 +46,7 @@ export class HomescreenComponent implements OnInit {
     //   data => this.userGroups$ = data);
 
     console.log('SessionStorage UserId: ' + this.userService.getUserId());
-    console.log('SessionStorage adminStatus: ' + this.userService.isAdmin());
+    console.log('SessionStorage isAdmin: ' + this.userService.isAdmin());
 
   }
 

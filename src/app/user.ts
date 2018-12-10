@@ -6,7 +6,7 @@ export class User {
   password: string;
   points: number;
   groups: [null];
-  adminStatus: number;
+  isAdmin: number;
 
   // Register User Constructor
   constructor(email: string, firstname: string, lastname: string, password: string) {
@@ -15,6 +15,6 @@ export class User {
     this.lastName = lastname;
     this.password = password;
     this.groups = [null];
-    this.adminStatus = 0;
+    this.isAdmin = 0;
   }
 }

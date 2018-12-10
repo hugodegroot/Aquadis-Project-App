@@ -27,12 +27,14 @@ export class AddPeopleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     // Gets the group you are in
     this.route.params.subscribe(params => this.groupID = params.id);
     this.groupService.getGroup(this.groupID).subscribe(data => this.group$ = data)
 
     // Get all the users from the database
-    this.userService.getUsers().subscribe(data => this.users$ = data);
+    this.userService.getUsers().subscribe(data => {this.users$ = data
+      this.loading = false;});
   }
 
   selectUser(user: User) {
@@ -50,4 +52,7 @@ export class AddPeopleComponent implements OnInit {
     this.loading = false;
   }
 
+  search(value: string) {
+      this.userService.getUsersByEmailOrName(value).subscribe(users => this.users$ = users);
+  }
 }

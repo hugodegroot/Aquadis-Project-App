@@ -10,7 +10,7 @@
         </div>
       </div>
       <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group/{{groupID}}/add-people">Add player</button>
+        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group/{{groupID}}/add-people">Add friend</button>
       </div>
     </div>
   </div>
@@ -30,8 +30,7 @@
       </ul>
       <div *ngIf="selectedGroup">
         <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group/{{selectedGroup.id}}"
-                (click)="refreshGroup()">Change group
-        </button>
+                (click)="refreshGroup()">Change to {{selectedGroup.name}}</button>
       </div>
     </div>
   </div>

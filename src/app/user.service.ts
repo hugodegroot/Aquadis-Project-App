@@ -56,27 +56,11 @@ export class UserService {
     );
   }
 
-  /* GET users whose name contains search term */
-  searchUsersByUsername(term: string): Observable<User[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<User[]>(`${this.usersUrl}/?username=${term}`).pipe(
-      tap(_ => this.log(`found users matching username: "${term}"`)),
-      catchError(this.handleError<User[]>('searchUsersByUsername', []))
-    );
-  }
-
-  /* GET users whose password contains search term */
-  searchUsersByPassword(term: string): Observable<User[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<User[]>(`${this.usersUrl}/?password=${term}`).pipe(
-      tap(_ => this.log(`found users matching password: "${term}"`)),
-      catchError(this.handleError<User[]>('searchUsersByPassword', []))
+  getUsersByEmailOrName(terms: string): Observable<User[]> {
+    const url = `${this.usersUrl}/search?email=${terms}&firstname=${terms}&lastname=${terms}`;
+    return this.http.get<User[]>(url).pipe(
+      tap(_ => console.log(`fetched users by email or name ${terms}` + ' url: ' + url)),
+      catchError(this.handleError<User[]>(`getUsersByEmailOrName terms ${terms}` + ' url: ' + url))
     );
   }
 
@@ -162,7 +146,7 @@ export class UserService {
   login(user: User): void {
     sessionStorage.setItem(loginToken, 'set');
     this.setUserId(user.id);
-    if (user.adminStatus) {
+    if (user.isAdmin) {
       this.setAdmin();
     }
   }
@@ -190,4 +174,5 @@ export class UserService {
   isAdmin(): boolean {
     return sessionStorage.getItem(adminToken) != null;
   }
+
 }
