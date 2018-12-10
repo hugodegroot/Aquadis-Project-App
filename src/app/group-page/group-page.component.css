@@ -1,0 +1,66 @@
+.users {
+  margin-right: auto;
+  margin-left: auto;
+  width: 90%;
+}
+
+.user_card {
+  display: flex;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 2px 16px;
+}
+
+.user_card:first-child:before {
+  content: url(~icons/cup.png);
+  transform: scale(0.05);
+  display: inline-block;
+  max-width: 1px;
+  max-height: 1px;
+  margin-right: auto;
+}
+
+/* On mouse-over, add a deeper shadow */
+.user_card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.user_card:first-child{
+  font-size: 1.5em;
+  font-family: Algerian, serif;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.user_card:first-child:hover{
+  background-color: darkgray;
+  -webkit-animation: neon2 1s ease-in-out infinite alternate;
+  -moz-animation: neon2 1s ease-in-out infinite alternate;
+  animation: neon2 1s ease-in-out infinite alternate;
+}
+
+.users_name {
+  margin-right: auto;
+  vertical-align: center;
+  font-size: large;
+}
+
+@-webkit-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #F0E68C, 0 0 30px #FFA500, 0 0 40px #DAA520, 0 0 70px #DAA520, 0 0 80px #DAA520, 0 0 100px #DAA520, 0 0 150px #DAA520;
+  }
+  to {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #F0E68C, 0 0 15px #FFA500, 0 0 20px #DAA520, 0 0 35px #DAA520, 0 0 40px #DAA520, 0 0 50px #DAA520, 0 0 75px #DAA520;
+  }
+}
+
+@-moz-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #F0E68C, 0 0 30px #FFA500, 0 0 40px #DAA520, 0 0 70px #DAA520, 0 0 80px #DAA520, 0 0 100px #DAA520, 0 0 150px #DAA520;
+  }
+  to {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #F0E68C, 0 0 30px #FFA500, 0 0 40px #DAA520, 0 0 35px #DAA520, 0 0 40px #DAA520, 0 0 50px #DAA520, 0 0 75px #DAA520;
+  }
+}

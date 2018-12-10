@@ -2,19 +2,15 @@
   <h1>Groups</h1>
   <div *ngIf="group$" class="content_container">
     <div class="inner_container">
-      <h2>Current group: {{group$.name}}</h2>
-      <p>The people in this group are:</p> <!-- geef groep weer -->
-      <ul>
-        <li *ngFor="let user of users$">
-          <span class="badge">{{user.firstName}} {{user.lastName}}</span>
-        </li>
-        <!--<li *ngFor="let user of group$.users">-->
-          <!--<span class="badge">{{user.firstName}} {{user.lastName}} {{user.points}}</span>-->
-        <!--</li>-->
-      </ul>
+      <h2>{{group$.name}}</h2>
+      <div class="users">
+        <div class="user_card" *ngFor="let user of users$">
+          <span class="users_name">{{user.firstName}} {{user.lastName}}</span>
+          <a><strong>{{user.points}}</strong></a>
+        </div>
+      </div>
       <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/add-people">Add people
-        </button>
+        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/group/{{groupID}}/add-people">Add player</button>
       </div>
     </div>
   </div>
@@ -28,7 +24,8 @@
             <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
               <mat-icon class="icon">label</mat-icon>
               {{group.name}}
-            </div></mat-card>
+            </div>
+          </mat-card>
         </li>
       </ul>
       <div *ngIf="selectedGroup">
@@ -36,17 +33,6 @@
                 (click)="refreshGroup()">Change group
         </button>
       </div>
-
-      <div *ngIf="selectedGroup">
-        <h2>{{selectedGroup.name | uppercase}} Details</h2>
-        <p>id: {{selectedGroup.id}}</p>
-        <div>
-          <mat-form-field style="width: 100%">
-            <input matInput placeholder="Name" [(ngModel)]="selectedGroup.name">
-          </mat-form-field>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

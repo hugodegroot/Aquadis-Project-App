@@ -23,10 +23,10 @@ const routes: Routes = [
   {path: 'betting/:id', component: BettingComponent},
   {path: 'group', component: GroupPageComponent},
   {path: 'group/:id', component: GroupPageComponent},
+  {path: 'group/:id/add-people', component: AddPeopleComponent},
   {path: 'add-group', component: AddGroupComponent},
   {path: 'raceteam', component: RaceteamComponent},
   {path: 'predict', component: PredictComponent},
-  {path: 'add-people', component: AddPeopleComponent},
   {path: 'race/:id', component: RaceComponent},
   {path: 'add-race', component: AddRaceComponent}
 ];

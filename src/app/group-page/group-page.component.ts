@@ -25,7 +25,6 @@ export class GroupPageComponent implements OnInit {
 
   onSelect(group: Group): void {
     this.selectedGroup = group;
-    console.log(this.users$);
   }
 
   constructor(private http: HttpClient,
@@ -49,9 +48,9 @@ export class GroupPageComponent implements OnInit {
     }
     this.userService.getGroups(this.userService.getUserId()).subscribe(
       data => {
-        this.groups$ = data, this.groupService.getUsers(this.groupID).subscribe(
-          users => {
-            this.users$ = users, this.loading = false;
+        this.groups$ = data, this.userService.getUsersFromGroup(this.userService.getUserId(), this.groupID).subscribe(
+          data => {
+            this.users$ = data, this.loading = false;
           }
         );
       });
