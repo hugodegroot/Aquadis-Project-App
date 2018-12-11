@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userService.logout();
     this.router.navigateByUrl('login');
-    console.log(this.userService.isLogged());
   }
 
   goHome() {

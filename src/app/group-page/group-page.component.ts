@@ -7,6 +7,7 @@ import {Group} from '../group';
 import {GroupService} from '../group.service';
 import {UserService} from '../user.service';
 import {User} from '../user';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-group-page',
@@ -30,7 +31,8 @@ export class GroupPageComponent implements OnInit {
   constructor(private http: HttpClient,
               private groupService: GroupService,
               private userService: UserService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private appComponent: AppComponent
   ) {
     this.refreshGroup();
   }
