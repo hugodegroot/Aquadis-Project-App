@@ -1,0 +1,43 @@
+.racer_card:hover {
+  cursor: pointer;
+}
+
+.large_icon {
+  font-size: 22px;
+  vertical-align: sub;
+}
+
+.toggled {
+}
+
+.addOrRemove {
+  float: right;
+  display: inline-block;
+  top: 35%;
+  position: absolute;
+  right: 0;
+  font-size: 24px;
+  margin-right: 25px;
+
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.addOrRemove:hover {
+  cursor: pointer;
+
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  transform: scale(1.25);
+}

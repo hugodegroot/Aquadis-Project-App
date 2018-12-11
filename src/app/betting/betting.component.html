@@ -1,41 +1,67 @@
 <div class="center_container">
   <h1>Place your bets!</h1>
-  <div class="content_container">
+
+  <div *ngIf="myRacers.length > 0" class="content_container">
     <div class="inner_container">
-      <h2>Place your bets</h2>
+      <h2>My Racers!</h2>
+      <h3>{{myRacers.length}}/5</h3>
       <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/raceteam">Choose racers
-        </button>
+        <mat-card *ngFor="let racer of myRacers" (click)="removeRacerFromPrediction($event, racer)"
+                  class="selection_card_half_width racer_card">
+          <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+            <p class="card_text_ellipsis">
+              <mat-icon class="icon">person_outline</mat-icon>
+              {{racer.firstName.charAt(0)}}. {{racer.lastName}}
+            </p>
+            <p class="card_text_ellipsis">
+              <mat-icon class="icon">attach_money</mat-icon>
+              {{racer.salary.toLocaleString('en')}}
+            </p>
+            <mat-icon class="icon addOrRemove">remove</mat-icon>
+          </div>
+        </mat-card>
       </div>
-
-      <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/yourteam">View team</button>
-      </div>
-
-      <div>
-        <button class="button" mat-raised-button color="primary" type="submit" routerLink="/predict">Predict max's end
-          position
-        </button>
-      </div>
+      <button *ngIf="myRacers.length > 4" class="button" mat-raised-button color="primary">Confirm Prediction
+      </button>
     </div>
   </div>
 
   <!-- Dit moeten alle leden van de groep worden met een optie om hun keuzes te zien wanneer je er een selecteerd -->
   <div class="content_container">
     <div class="inner_container">
-      <div id="title">
-        <h2>All racers in this pool: </h2>
-      </div>
-      <table class="table">
-        <tr>
-          <th>Name</th>
-          <th>Salary</th>
-        </tr>
-        <tr *ngFor="let racer of Racers$">
-          <td>{{racer.lastName}}</td>
-          <td>{{racer.salary}}</td>
-        </tr>
-      </table>
+      <h2>Choose your racers!</h2>
+      <!--TODO Get budget of correct group-->
+      <h3 *ngIf="currentUser">Budget:
+        <mat-icon class="icon large_icon">attach_money</mat-icon>
+        {{currentUser.groups[0].budget.toLocaleString('en')}}</h3>
+      <p *ngIf="this.maxRacersErrorMessage" class="error_message">You already chose 5 racers!</p>
+      <p *ngIf="this.duplicateRacerErrorMessage" class="error_message">You already added this racer!</p>
+      <details *ngFor="let team of teams" open>
+        <summary>
+          <mat-card class="selection_card">
+            <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+              <p class="card_text_ellipsis">
+                <mat-icon class="icon">people_outline</mat-icon>
+                {{team.name}}
+              </p>
+            </div>
+          </mat-card>
+        </summary>
+        <mat-card *ngFor="let racer of team.racer" (click)="addRacerToPrediction($event, racer)"
+                  class="selection_card_half_width racer_card">
+          <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
+            <p class="card_text_ellipsis">
+              <mat-icon class="icon">person_outline</mat-icon>
+              {{racer.firstName.charAt(0)}}. {{racer.lastName}}
+            </p>
+            <p class="card_text_ellipsis">
+              <mat-icon class="icon">attach_money</mat-icon>
+              {{racer.salary.toLocaleString('en')}}
+            </p>
+            <mat-icon class="icon addOrRemove">add</mat-icon>
+          </div>
+        </mat-card>
+      </details>
     </div>
   </div>
 </div>

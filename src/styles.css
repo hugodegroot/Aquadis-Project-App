@@ -98,7 +98,7 @@ h1 {
   font-size: 18px;
   vertical-align: bottom;
   width: 18px !important;
-  height: auto !important;
+  height: 18px !important;
   margin-right: 5px;
 }
 
@@ -239,6 +239,14 @@ details {
 
   .form_input_half_width {
     width: 100%;
+  }
+
+  .addOrRemove {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+    margin-right: 5px !important;
+    top: 38% !important;
   }
 
 }

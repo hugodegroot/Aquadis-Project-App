@@ -124,6 +124,10 @@ export class RaceComponent implements OnInit {
   private compareRaces(race: Race, currentRace: Race) {
     return race.id === currentRace.id;
   }
+
+  saveMax(value: string) {
+    console.log(value);
+  }
 }
 
 @Component({

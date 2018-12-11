@@ -5,9 +5,6 @@
     <div class="inner_container">
       <h2>Admin tools</h2>
       <p>Change name</p>
-      <p>Change name</p>
-      <button class="button" mat-raised-button color="primary" type="submit" routerLink="/betting">Make your bet
-      </button>
     </div>
   </div>
 
@@ -17,14 +14,14 @@
       <h2>Predict Max' position</h2>
       <article>
         <mat-form-field>
-          <mat-select placeholder="Position">
+          <mat-select #maxPos placeholder="Position">
             <mat-option *ngFor="let position of positions" [value]="position.value">
               {{position.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </article>
-      <button class="button" mat-raised-button color="primary" type="submit">Save position</button>
+      <button *ngIf="maxPos.value" class="button" mat-raised-button color="primary" (click)="saveMax(maxPos.value)" type="submit">Save position</button>
     </div>
   </div>
 
