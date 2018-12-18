@@ -29,7 +29,7 @@
   <div class="content_container">
     <div class="inner_container">
       <h2>Teams</h2>
-      <p>Participating Teams!</p>
+      <mat-slide-toggle color="primary" class="button toggle_button" (change)="this.toggleDetails($event)">Expand teams</mat-slide-toggle>
       <details *ngFor="let team of teams">
         <summary>
           <mat-card class="selection_card">

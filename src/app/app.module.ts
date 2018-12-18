@@ -21,6 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRippleModule} from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 import 'hammerjs';
@@ -80,7 +81,8 @@ import {AddRaceComponent} from './add-race/add-race.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

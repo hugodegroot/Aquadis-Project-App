@@ -112,7 +112,6 @@ export class RaceComponent implements OnInit {
   private showDialog(racerId: number, salary: number) {
     const dialogRef = this.dialog.open(matDialogSalaryUpdated, {
       width: '350px',
-
       data: {racerId: racerId, salary: salary}
     });
 
@@ -127,6 +126,15 @@ export class RaceComponent implements OnInit {
 
   saveMax(value: string) {
     console.log(value);
+  }
+
+  toggleDetails($event: any) {
+    // console.log($event);
+    // console.log($event.source._elementRef.nativeElement.innerText);
+    let elements = document.querySelectorAll('details');
+    Array.from(elements).forEach(function(element, index) {
+      element.open = $event.checked;
+    })
   }
 }
 
