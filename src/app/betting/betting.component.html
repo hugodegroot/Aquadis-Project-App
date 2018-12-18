@@ -1,13 +1,13 @@
 <div class="center_container">
-  <h1>Place your bets!</h1>
+  <h1 *ngIf="group">Place your bets for group {{group.name}}!</h1>
 
-  <div *ngIf="myRacers.length > 0" class="content_container">
+  <div *ngIf="myRacers.length > 0" class="content_container" id="myRacers">
     <div class="inner_container">
       <h2>My Racers!</h2>
       <h3>{{myRacers.length}}/5</h3>
       <div>
         <mat-card *ngFor="let racer of myRacers" (click)="removeRacerFromPrediction($event, racer)"
-                  class="selection_card_half_width racer_card">
+                  class="selection_card racer_card">
           <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
             <p class="card_text_ellipsis">
               <mat-icon class="icon">person_outline</mat-icon>
@@ -27,7 +27,7 @@
   </div>
 
   <!-- Dit moeten alle leden van de groep worden met een optie om hun keuzes te zien wanneer je er een selecteerd -->
-  <div class="content_container">
+  <div class="content_container" id="racersList">
     <div class="inner_container">
       <h2>Choose your racers!</h2>
       <!--TODO Get budget of correct group-->
@@ -36,6 +36,7 @@
         {{currentUser.groups[0].budget.toLocaleString('en')}}</h3>
       <p *ngIf="this.maxRacersErrorMessage" class="error_message">You already chose 5 racers!</p>
       <p *ngIf="this.duplicateRacerErrorMessage" class="error_message">You already added this racer!</p>
+      <p *ngIf="this.outOfFundsErrorMessage" class="error_message">You don't have enough budget left!</p>
       <details *ngFor="let team of teams" open>
         <summary>
           <mat-card class="selection_card">
@@ -48,7 +49,7 @@
           </mat-card>
         </summary>
         <mat-card *ngFor="let racer of team.racer" (click)="addRacerToPrediction($event, racer)"
-                  class="selection_card_half_width racer_card">
+                  class="selection_card_half_width racer_card racer" [ngClass]="['racer_' + racer.id, 'selection_card_half_width', 'racer_card', 'racer']">
           <div matRipple class="selection_card_ripple_content" [matRippleColor]="gray">
             <p class="card_text_ellipsis">
               <mat-icon class="icon">person_outline</mat-icon>
@@ -58,7 +59,7 @@
               <mat-icon class="icon">attach_money</mat-icon>
               {{racer.salary.toLocaleString('en')}}
             </p>
-            <mat-icon class="icon addOrRemove">add</mat-icon>
+            <mat-icon class="icon addOrRemove racer" [ngClass]="['racer_' + racer.id, 'icon', 'addOrRemove', 'racer']">add</mat-icon>
           </div>
         </mat-card>
       </details>

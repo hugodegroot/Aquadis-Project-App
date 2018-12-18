@@ -8,6 +8,17 @@
 }
 
 .toggled {
+  background-color: #9E9E9E;
+  box-shadow: inset 0px 0px 5px !important;
+}
+
+.toggled:hover {
+  cursor: not-allowed !important;
+  -webkit-transform: scale(1) !important;
+  -moz-transform: scale(1) !important;
+  -ms-transform: scale(1) !important;
+  -o-transform: scale(1) !important;
+  transform: scale(1) !important;
 }
 
 .addOrRemove {
@@ -17,7 +28,11 @@
   position: absolute;
   right: 0;
   font-size: 24px;
-  margin-right: 25px;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 10px;
+
+  box-shadow: 0px 0px 20px 10px white, inset 0px 0px 20px 10px white;
 
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
