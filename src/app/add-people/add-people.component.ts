@@ -6,6 +6,8 @@ import {ActivatedRoute} from "@angular/router";
 import {UserGroupService} from "../user-group.service";
 import {UserGroup} from "../user-group";
 import {Group} from "../group";
+import {Race} from '../race';
+import {RaceService} from '../race.service';
 
 @Component({
   selector: 'app-add-people',
@@ -16,21 +18,26 @@ export class AddPeopleComponent implements OnInit {
 
   users$: User[];
   selectedUser$: User;
-  groupID: number;
+  userGroup: UserGroup;
   group$: Group;
+
+  groupID: number;
   loading = false;
 
   constructor(private userService: UserService,
               private groupService: GroupService,
               private userGroupService: UserGroupService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private raceService: RaceService,
+              ) {
   }
 
   ngOnInit() {
     this.loading = true;
+
     // Gets the group you are in
     this.route.params.subscribe(params => this.groupID = params.id);
-    this.groupService.getGroup(this.groupID).subscribe(data => this.group$ = data)
+    this.groupService.getGroup(this.groupID).subscribe(group => this.group$ = group);
 
     // Get all the users from the database
     this.userService.getUsers().subscribe(data => {this.users$ = data
@@ -45,14 +52,18 @@ export class AddPeopleComponent implements OnInit {
   addUser() {
     this.loading = true;
 
-    this.userGroupService.addUserGroup(new UserGroup(0, "member", this.selectedUser$, this.group$));
+    this.raceService.getCurrentRace().subscribe(race => {
+      this.userGroupService.addUserGroup(new UserGroup(0, "member", this.selectedUser$, this.group$, race)).subscribe(userGroup => {this.userGroup = userGroup,
+      console.log(userGroup)})
+    });
 
-    console.log(new UserGroup(0, "member", this.selectedUser$, this.group$));
 
     this.loading = false;
   }
 
   search(value: string) {
-      this.userService.getUsersByEmailOrName(value).subscribe(users => this.users$ = users);
+    if (value.length > 1 || value.length === 0) {
+        this.userService.getUsersByEmailOrName(value).subscribe(users => this.users$ = users);
+    }
   }
 }

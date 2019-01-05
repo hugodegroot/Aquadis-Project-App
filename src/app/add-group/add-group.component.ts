@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {User} from "../user";
-import {Group} from "../group";
-import {GroupService} from "../group.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {User} from '../user';
+import {Group} from '../group';
+import {GroupService} from '../group.service';
+import {UserGroup} from '../user-group';
+import {UserService} from '../user.service';
+import {RaceService} from '../race.service';
+import {Race} from '../race';
+import {UserGroupService} from '../user-group.service';
 
 @Component({
   selector: 'app-add-group',
@@ -15,6 +20,8 @@ export class AddGroupComponent implements OnInit {
   // Variables declaration
   user: User;
   group: Group;
+  userGroup: UserGroup;
+  race: Race;
   loading = false;
   errorMessage = false;
 
@@ -26,16 +33,15 @@ export class AddGroupComponent implements OnInit {
     groupName: new FormControl('', Validators.required)
   });
 
-
-
-
-
   constructor(private router: Router,
               private groupService: GroupService,
-              ) {
+              private userService: UserService,
+              private raceService: RaceService,
+              private userGroupService: UserGroupService,
+  ) {
+    this.userService.getUser(this.userService.getUserId()).subscribe(user => this.user = user);
+    this.raceService.getCurrentRace().subscribe(race => this.race = race);
   }
-
-
 
   ngOnInit() {
 
@@ -51,15 +57,23 @@ export class AddGroupComponent implements OnInit {
       // Start the loader
       this.loading = true;
 
-      // Add the user via Api
+      // Add the group via Api
       this.groupService.addGroup(new Group(this.groupValue
-        )).subscribe(group => {
+      )).subscribe(group => {
         // If successful
         this.group = group;
-        this.loading = false;
         this.errorMessage = false;
         this.groupForm.disable();
       });
+
+      this.userGroup = new UserGroup(0, 'admin', this.user, this.group, this.race);
+
+      // Add creator to group
+      this.userGroupService.addUserGroup(this.userGroup).subscribe(userGroup => {
+          this.userGroup = userGroup,
+          this.loading = false;
+      });
+
     } else {
       this.errorMessage = true;
       //this.groupForm.controls.repeatPassword.setErrors({'incorrect': true});

@@ -25,6 +25,7 @@ export class UserGroupService {
   ) {
   }
 
+  /** POST: add a new userGroup to the server */
   addUserGroup(userGroup: UserGroup){
     return this.http.post<UserGroup>(this.userGroupUrl, userGroup, httpOptions).pipe(
       tap((usergroup: UserGroup) => this.log(`added userGroup ${usergroup}`)),
